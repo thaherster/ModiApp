@@ -133,8 +133,8 @@ function receivedMessage(event) {
 	if (!sessionIds.has(senderID)) {
 		sessionIds.set(senderID, uuid.v1());
 	}
-	//console.log("Received message for user %d and page %d at %d with message:", senderID, recipientID, timeOfMessage);
-	//console.log(JSON.stringify(message));
+	console.log("Received message for user %d and page %d at %d with message:", senderID, recipientID, timeOfMessage);
+	console.log(JSON.stringify(message));
 
 	var isEcho = message.is_echo;
 	var messageId = message.mid;
@@ -184,6 +184,35 @@ function handleEcho(messageId, appId, metadata) {
 
 function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 	switch (action) {
+
+		case "detailed-application":
+		{
+			if(isDefined(contexts[0])&&contexts[0].name==='job-application'&&contexts[0].parameters)
+			{
+				let phone = (isDefined(contexts[0].parameters['phone-number'])&&
+					contexts[0].parameters['phone-number']!=='')?contexts[0].parameters['phone-number']:'';
+				let username = (isDefined(contexts[0].parameters['user-name'])&&
+					contexts[0].parameters['user-name']!=='')?contexts[0].parameters['user-name']:'';
+
+                let yrsofexp = (isDefined(contexts[0].parameters['yrs-of-exp'])&&
+                    contexts[0].parameters['yrs-of-exp']!=='')?contexts[0].parameters['yrs-of-exp']:'';
+                let jobvacancy = (isDefined(contexts[0].parameters['job-vacancy'])&&
+                    contexts[0].parameters['job-vacancy']!=='')?contexts[0].parameters['job-vacancy']:'';
+                let perviousjob = (isDefined(contexts[0].parameters['pervious-job'])&&
+                    contexts[0].parameters['pervious-job']!=='')?contexts[0].parameters['pervious-job']:'';
+
+                if(phone!==''&&username!==''&&yrsofexp!==''&&jobvacancy!==''&&perviousjob!=='')
+				{
+					let emailcontent = ' New Deatils '+ username+' '+ phone+' '+yrsofexp+' '+jobvacancy+' '+perviousjob;
+					console.log("__________-_-_-_----_____"+emailcontent);
+				}
+
+
+			}
+            sendTextMessage(sender, responseText);
+
+        }
+			break;
 		default:
 			//unhandled action, just send back the text
 			sendTextMessage(sender, responseText);
@@ -325,6 +354,8 @@ function handleApiAiResponse(sender, response) {
 }
 
 function sendToApiAi(sender, text) {
+
+	console.log("sendToApiAi : "+text);
 
 	sendTypingOn(sender);
 	let apiaiRequest = apiAiService.textRequest(text, {
