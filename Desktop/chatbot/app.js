@@ -785,12 +785,42 @@ function receivedPostback(event) {
 
 	switch (payload) {
 
-		case 'CHAT' :
+		case 'MENU':
+		{
+			sendToApiAi(senderID, "restaurant menu");
+
+		}
+			break;
+
+		case 'SHOPCART':
+		{
+            sendToApiAi(senderID, "user shopcart");
+
+		}
+			break;
+
+        case 'CONFIRMORDER':
+        {
+            sendToApiAi(senderID, "user confirm order");
+
+        }
+            break;
+
+        case 'REVIEW':
+        {
+            sendToApiAi(senderID, "restaurant reviews");
+
+        }
+            break;
+
+
+        case 'CHAT' :
 		{
 			sendTextMessage(senderID,"Well i love chatting too.. do you have any more questions for me?")
 
 		}
 			break;
+
 		default:
 			//unindentified payload
 			sendTextMessage(senderID, "I'm not sure what you want. Can you be more specific?");
