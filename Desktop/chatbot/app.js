@@ -185,6 +185,38 @@ function handleEcho(messageId, appId, metadata) {
 function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 	switch (action) {
 
+		case "faq-delivery-time":
+		{
+            sendTextMessage(sender, responseText);
+            sendTypingOn(sender);
+            //ask what the user want to ask next
+
+			setTimeout(function () {
+				let buttons =
+				[
+					{ type:"phone_number",
+                    title:"call",
+                    payload:"+919847303065"
+            		},
+					{type:"web_url",
+                    url:"https://www.dronelancer.in/",
+                    title:"Dronerlancer"
+            		},
+					{type:"postback",
+                    title:"KEEP ON Chatting",
+                    payload:"CHAT"
+            		}
+				];
+
+
+				sendButtonMessage(sender,"What would you like to do next?",buttons);
+				
+            },3000);
+
+
+        }
+			break;
+
 		case "detailed-application":
 		{
 			if(isDefined(contexts[0])&&contexts[0].name==='job-application'&&contexts[0].parameters)
