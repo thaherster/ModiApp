@@ -6,8 +6,11 @@ const express = require('express');
 const crypto = require('crypto');
 const bodyParser = require('body-parser');
 const request = require('request');
+const pg = require('pg');
 const app = express();
 const uuid = require('uuid');
+
+pg.defaults.ssl = true;
 
 
 // Messenger API parameters
@@ -25,6 +28,9 @@ if (!config.FB_APP_SECRET) {
 }
 if (!config.SERVER_URL) { //used for ink to static files
 	throw new Error('missing SERVER_URL');
+}
+if (!config.PG_CONFIG) {
+	throw new Error('missing PG_CONFIG');
 }
 
 
@@ -813,7 +819,12 @@ function receivedPostback(event) {
 
 	switch (payload) {
 
-		case 'MENU':
+		case 'GET_STARTED':
+		{
+			greetUserText(senderID);
+
+		}
+			break;case 'MENU':
 		{
 			sendToApiAi(senderID, "restaurant menu");
 
