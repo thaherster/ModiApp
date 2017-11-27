@@ -14,7 +14,7 @@ module.exports =  function (callback,userId) {
         }
 
     }, function (error, response, body) {
-        if (!error && response.statusCode == 200) {
+        if (!error && response.statusCode === 200) {
 
             var user = JSON.parse(body);
 
@@ -56,6 +56,8 @@ module.exports =  function (callback,userId) {
                                 }
                             }
                         });
+                    done();
+                    callback(user); //  sending the user data
 
                 });
                 pool.end();
