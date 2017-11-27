@@ -756,7 +756,6 @@ function greetUserText(userId) {
 	//first read user firstname
 
 	let user = usersMap.get(userId);
-
 				sendTextMessage(userId, "Welcome " + user.first_name + '!');
 
 }

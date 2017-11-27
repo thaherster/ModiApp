@@ -18,7 +18,7 @@
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
-              <caret line="757" column="35" lean-forward="false" selection-start-line="757" selection-start-column="35" selection-end-line="757" selection-end-column="35" />
+              <caret line="757" column="36" lean-forward="false" selection-start-line="757" selection-start-column="36" selection-end-line="757" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -27,8 +27,8 @@
       <file leaf-file-name="user.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/user.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="61" column="12" lean-forward="false" selection-start-line="61" selection-start-column="12" selection-end-line="61" selection-end-column="12" />
+            <state relative-caret-position="135">
+              <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -47,11 +47,12 @@
     <findStrings>
       <find>postback</find>
       <find>detailed</find>
-      <find>gree</find>
       <find>receivedmes</find>
       <find>map</find>
       <find>setses</find>
       <find>greet</find>
+      <find>sess</find>
+      <find>gree</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -139,12 +140,12 @@
       <option name="presentableId" value="Default" />
       <updated>1511690170886</updated>
       <workItem from="1511690173387" duration="6186000" />
-      <workItem from="1511763180029" duration="5224000" />
+      <workItem from="1511763180029" duration="6214000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11410000" />
+    <option name="totallyTimeSpent" value="12400000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -176,7 +177,16 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/user.js</url>
+          <line>8</line>
+          <properties />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -231,15 +241,15 @@
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
-          <caret line="757" column="35" lean-forward="false" selection-start-line="757" selection-start-column="35" selection-end-line="757" selection-end-column="35" />
+          <caret line="757" column="36" lean-forward="false" selection-start-line="757" selection-start-column="36" selection-end-line="757" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="61" column="12" lean-forward="false" selection-start-line="61" selection-start-column="12" selection-end-line="61" selection-end-column="12" />
+        <state relative-caret-position="135">
+          <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
           <folding />
         </state>
       </provider>
