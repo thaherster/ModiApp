@@ -9,6 +9,7 @@ const request = require('request');
 const pg = require('pg');
 const app = express();
 const uuid = require('uuid');
+const userData = require('./user');
 
 pg.defaults.ssl = true;
 
@@ -61,6 +62,7 @@ const apiAiService = apiai(config.API_AI_CLIENT_ACCESS_TOKEN, {
 	requestSource: "fb"
 });
 const sessionIds = new Map();
+const usersMap = new Map();
 
 // Index route
 app.get('/', function (req, res) {
@@ -126,7 +128,21 @@ app.post('/webhook/', function (req, res) {
 });
 
 
+function  setSessionAndUser(senderID) {
+    if (!sessionIds.has(senderID)) {
+        sessionIds.set(senderID, uuid.v1());
+    }
 
+    if (!usersMap.has(senderID))
+	{
+		userData(function (user) {
+			usersMap.set(senderID,user);
+			
+        },senderID);
+	}
+
+	
+}
 
 
 function receivedMessage(event) {
@@ -135,10 +151,8 @@ function receivedMessage(event) {
 	var recipientID = event.recipient.id;
 	var timeOfMessage = event.timestamp;
 	var message = event.message;
-
-	if (!sessionIds.has(senderID)) {
-		sessionIds.set(senderID, uuid.v1());
-	}
+    setSessionAndUser(senderID);
+	
 	console.log("Received message for user %d and page %d at %d with message:", senderID, recipientID, timeOfMessage);
 	console.log(JSON.stringify(message));
 
@@ -740,72 +754,11 @@ function sendAccountLinking(recipientId) {
 
 function greetUserText(userId) {
 	//first read user firstname
-	request({
-		uri: 'https://graph.facebook.com/v2.7/' + userId,
-		qs: {
-			access_token: config.FB_PAGE_TOKEN
-		}
 
-	}, function (error, response, body) {
-		if (!error && response.statusCode == 200) {
-
-			var user = JSON.parse(body);
-
-			if (user.first_name) {
-				console.log("FB user: %s %s, %s",
-					user.first_name, user.last_name, user.gender);
-
-				//connection pool
-				//a connection pool is a group of db connection
-				//sitting around waitig to be handled and used
-                var pool = new pg.Pool(config.PG_CONFIG);
-                pool.connect(function(err, client, done) {
-                    if (err) {
-                        return console.error('Error acquiring client', err.stack);
-                    }
-                    var rows = [];
-                    console.log('fetching user');
-                    client.query(`SELECT id FROM users WHERE fb_id='${userId}' LIMIT 1`,
-                        function(err, result) {
-                            console.log('query result ' + result);
-                            if (err) {
-                                console.log('Query error: ' + err);
-                            } else {
-                                console.log('rows: ' + result.rows.length);
-                                if (result.rows.length === 0) {
-                                    let sql = 'INSERT INTO users (fb_id, first_name, last_name, profile_pic, ' +
-                                        'locale, timezone, gender) VALUES ($1, $2, $3, $4, $5, $6, $7)';
-                                    console.log('sql: ' + sql);
-                                    client.query(sql,
-                                        [
-                                            userId,
-                                            user.first_name,
-                                            user.last_name,
-                                            user.profile_pic,
-                                            user.locale,
-                                            user.timezone,
-                                            user.gender
-                                        ]);
-                                }
-                            }
-                        });
-
-                });
-                pool.end();
-
-
-
+	let user = usersMap.get(userId);
 
 				sendTextMessage(userId, "Welcome " + user.first_name + '!');
-			} else {
-				console.log("Cannot get data for fb user with id",
-					userId);
-			}
-		} else {
-			console.error(response.error);
-		}
 
-	});
 }
 
 /*
@@ -853,6 +806,7 @@ function receivedPostback(event) {
 	var senderID = event.sender.id;
 	var recipientID = event.recipient.id;
 	var timeOfPostback = event.timestamp;
+    setSessionAndUser(senderID);
 
 	// The 'payload' param is a developer-defined field which is set in a postback 
 	// button for Structured Messages. 
