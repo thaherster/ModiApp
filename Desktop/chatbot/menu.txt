@@ -11,11 +11,11 @@ curl -X POST -H "Content-Type: application/json" -d '{
               "payload":"MENU"
        },
         {
-          "title":"My Account",
+          "title":"Restaurant",
           "type":"nested",
           "call_to_actions":[
             {
-              "title":"Shopping Cart",
+              "title":"My Shopping Cart",
               "type":"postback",
               "payload":"SHOPCART"
             },
@@ -23,13 +23,18 @@ curl -X POST -H "Content-Type: application/json" -d '{
               "title":"Confirm Order",
               "type":"postback",
               "payload":"CONFIRMORDER"
+            },
+            {
+                "type":"postback",
+                "payload":"REVIEW",
+                "title":"User Reviews"
             }
           ]
         },
         {
 			"type":"postback",
-              "payload":"REVIEW", 
-              "title":"User Reviews"
+              "payload":"GET_STARTED",
+              "title":"Get Started"
         }
       ]
     }
