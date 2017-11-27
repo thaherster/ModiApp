@@ -1,0 +1,60 @@
+curl -X POST -H "Content-Type: application/json" -d '{
+ 
+  "persistent_menu":[
+    {
+      "locale":"default",
+      "composer_input_disabled": false,
+      "call_to_actions":[
+      {
+              "title":"Menu",
+              "type":"postback",
+              "payload":"MENU"
+       },
+        {
+          "title":"My Account",
+          "type":"nested",
+          "call_to_actions":[
+            {
+              "title":"Shopping Cart",
+              "type":"postback",
+              "payload":"SHOPCART"
+            },
+            {
+              "title":"Confirm Order",
+              "type":"postback",
+              "payload":"CONFIRMORDER"
+            }
+          ]
+        },
+        {
+			"type":"postback",
+              "payload":"REVIEW", 
+              "title":"User Reviews"
+        }
+      ]
+    }
+  ]
+
+  }' "https://graph.facebook.com/v2.6/me/messenger_profile?access_token=EAAB1kHocOhQBAJVoMKdj0YVNxvd4Dv6rSZBL4ilKyt1v7OZB2cVhlbRw0EaTORUZAIVcj2D6WMQsP69a77CFsZChglkFZBlAu1bOZCWQq9wWEoZCOO7aEBMjPus0YDDULP0F0OGA9b42eZC6hoH2njt1nTiY95VDeezRIKybsUQNMgZDZD"
+
+  //greetings message
+
+
+  curl -X POST -H "Content-Type: application/json" -d '{
+     "setting_type":"greeting",
+     "greeting":{
+       "text":"Hi, I am here to assist you in ordering food from Foodie!!"
+     }
+   }' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAB1kHocOhQBAJVoMKdj0YVNxvd4Dv6rSZBL4ilKyt1v7OZB2cVhlbRw0EaTORUZAIVcj2D6WMQsP69a77CFsZChglkFZBlAu1bOZCWQq9wWEoZCOO7aEBMjPus0YDDULP0F0OGA9b42eZC6hoH2njt1nTiY95VDeezRIKybsUQNMgZDZD"
+
+
+
+   // Get started button in the begining
+
+
+   curl -X POST -H "Content-Type: application/json" -d '{
+      "get_started":{
+      "payload":"GET_STARTED"
+    }
+      }' "https://graph.facebook.com/v2.6/me/messenger_profile?access_token=EAAB1kHocOhQBAJVoMKdj0YVNxvd4Dv6rSZBL4ilKyt1v7OZB2cVhlbRw0EaTORUZAIVcj2D6WMQsP69a77CFsZChglkFZBlAu1bOZCWQq9wWEoZCOO7aEBMjPus0YDDULP0F0OGA9b42eZC6hoH2njt1nTiY95VDeezRIKybsUQNMgZDZD"
+

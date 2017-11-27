@@ -219,7 +219,7 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 
 		case "detailed-application":
 		{
-			if(isDefined(contexts[0])&&contexts[0].name==='job-application'&&contexts[0].parameters)
+			if(isDefined(contexts[0])&&(contexts[0].name==='job-application'||contexts[0].name ==='job-application-details_dialog_context')&&contexts[0].parameters)
 			{
 				let phone = (isDefined(contexts[0].parameters['phone-number'])&&
 					contexts[0].parameters['phone-number']!=='')?contexts[0].parameters['phone-number']:'';
@@ -233,15 +233,43 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
                 let perviousjob = (isDefined(contexts[0].parameters['pervious-job'])&&
                     contexts[0].parameters['pervious-job']!=='')?contexts[0].parameters['pervious-job']:'';
 
-                if(phone!==''&&username!==''&&yrsofexp!==''&&jobvacancy!==''&&perviousjob!=='')
+                if(phone===''&&username!==''&&yrsofexp===''&&perviousjob!=='')
+				{
+					let replies =[
+                    {
+                        "content_type":"text",
+                        "title":"Less than 1 year",
+                        "payload":"Less than 1 year"
+                    },
+					{
+						"content_type":"text",
+						"title":"Less than 5 year",
+						"payload":"Less than 5 year"
+					},
+					{
+						"content_type":"text",
+						"title":"More than 5 year",
+						"payload":"More than 5 year"
+					}
+
+                ];
+					sendQuickReply(sender,responseText,replies);
+
+				}
+				else if(phone!==''&&username!==''&&yrsofexp!==''&&jobvacancy!==''&&perviousjob!=='')
 				{
 					let emailcontent = ' New Deatils '+ username+' '+ phone+' '+yrsofexp+' '+jobvacancy+' '+perviousjob;
 					console.log("__________-_-_-_----_____"+emailcontent);
-				}
+                    sendTextMessage(sender, responseText);
+
+                }
+                else {
+                    sendTextMessage(sender, responseText);
+
+                }
 
 
 			}
-            sendTextMessage(sender, responseText);
 
         }
 			break;
