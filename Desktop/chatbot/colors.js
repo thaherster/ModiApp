@@ -32,14 +32,14 @@ module.exports = {
             //
             // });
 
-                client.query(`SELECT * FROM users `,
+                client.query(`SELECT * FROM colors `,
                     function(err, result) {
                         console.log('query result ' + result);
                         if (err) {
                             console.log('Query error: ' + err);
                         } else {
                             console.log('rows: ' + result.rows.length);
-                          
+
                         }
                     });
 
