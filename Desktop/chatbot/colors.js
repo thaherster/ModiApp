@@ -14,7 +14,7 @@ module.exports = {
             }else {
                 console.log("Client Connected!!!");
 
-            client.query('SELECT color FROM public.colors',function (err,result) {
+            client.query('SELECT * FROM public.colors',function (err,result) {
                 if(err)
                 {
                     console.log(err +" -------_---__-__-_-_-_-_-___-_--_--_--_");
@@ -31,7 +31,6 @@ module.exports = {
                 }
 
             });
-
             done();}
         });
         pool.end();
