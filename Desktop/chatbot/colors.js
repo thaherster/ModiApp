@@ -7,6 +7,8 @@ pg.defaults.ssl = true;
 module.exports = {
 
     readAllColors: function(callback) {
+        console.log("readAllColors : ");
+
         var pool = new pg.Pool(config.PG_CONFIG);
         pool.connect(function(err, client, done) {
             if (err) {
