@@ -210,9 +210,10 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 		{
 			colors.readAllColors(function (allColors) {
 				let allColorString= allColors.join(',');
-				let reply = 'These are the Colors available '+allColorString+'. What is your favorite color?';
+				let reply = 'These are the Colors available ${allColorString}. What is your favorite color?';
 				sendTextMessage(sender,reply);
-				
+				sendTextMessage(sender,allColorString);
+
             })
 		}
 			break;
