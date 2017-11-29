@@ -7,12 +7,8 @@ pg.defaults.ssl = true;
 module.exports = {
 
     readAllColors: function(callback) {
-        console.log("readAllColors : ");
-
         var pool = new pg.Pool(config.PG_CONFIG);
         pool.connect(function(err, client, done) {
-            console.log("connect : ");
-
             if (err) {
                 return console.error('Error acquiring client', err.stack);
             }
@@ -20,24 +16,20 @@ module.exports = {
                     'SELECT color FROM public.colors',
                     function(err, result) {
                         if (err) {
-                            console.log(err);
+                            console.log(err +" -------_---__-__-_-_-_-_-___-_--_--_--_");
                             callback([]);
                         } else {
                             let colors = [];
                             for (let i = 0; i < result.rows.length; i++) {
+                                console.log(result.toString()+" -----_______--_-_-_--_-_-");
                                 colors.push(result.rows[i]['color']);
-                                console.log(" colors : "+i+" "+result.rows[i]['color']);
                             }
                             callback(colors);
                         }
                     });
-            console.log("after query : ");
-
             done();
         });
         pool.end();
-        console.log("pool end :");
-
     },
 
 
