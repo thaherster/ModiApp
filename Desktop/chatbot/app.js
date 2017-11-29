@@ -10,6 +10,7 @@ const pg = require('pg');
 const app = express();
 const uuid = require('uuid');
 const userData = require('./user');
+const colors = require('./colors');
 
 pg.defaults.ssl = true;
 
@@ -204,6 +205,17 @@ function handleEcho(messageId, appId, metadata) {
 
 function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 	switch (action) {
+
+		case "iphone-colors":
+		{
+			colors.readAllColors(function (allColors) {
+				let allColorString= allColors.join(',');
+				let reply = 'These are the Colors available $allColorString. What is your favorite color?';
+				sendTextMessage(sender,reply);
+				
+            })
+		}
+			break;
 
 		case "faq-delivery-time":
 		{
