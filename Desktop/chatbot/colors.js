@@ -11,6 +11,8 @@ module.exports = {
 
         var pool = new pg.Pool(config.PG_CONFIG);
         pool.connect(function(err, client, done) {
+            console.log("connect : ");
+
             if (err) {
                 return console.error('Error acquiring client', err.stack);
             }
@@ -29,9 +31,13 @@ module.exports = {
                             callback(colors);
                         };
                     });
+            console.log("after query : ");
+
             done();
         });
         pool.end();
+        console.log("pool end :");
+
     },
 
 
