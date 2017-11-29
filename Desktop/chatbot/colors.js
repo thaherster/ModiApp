@@ -17,7 +17,7 @@ module.exports = {
                 return console.error('Error acquiring client', err.stack);
             }
             client.query(
-                    'SELECT color FROM colors',
+                    'SELECT color FROM public.colors',
                     function(err, result) {
                         if (err) {
                             console.log(err);
@@ -99,4 +99,4 @@ module.exports = {
     }
 
 
-}
+};
