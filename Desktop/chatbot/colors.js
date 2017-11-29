@@ -32,9 +32,9 @@ module.exports = {
             //
             // });
 
-                client.query(`SELECT * FROM colors `,
+                client.query(`SELECT * FROM public.colors `,
                     function(err, result) {
-                        console.log('query result ' + result);
+                        console.log('query result ' + result.toString());
                         if (err) {
                             console.log('Query error: ' + err);
                         } else {
