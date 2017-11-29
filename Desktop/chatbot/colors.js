@@ -23,6 +23,7 @@ module.exports = {
                             let colors = [];
                             for (let i = 0; i < result.rows.length; i++) {
                                 colors.push(result.rows[i]['color']);
+                                console.log(" colors : "+i+" "+result.rows[i]['color']);
                             }
                             callback(colors);
                         };
