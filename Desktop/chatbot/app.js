@@ -9,7 +9,7 @@ const request = require('request');
 const pg = require('pg');
 const app = express();
 const uuid = require('uuid');
-const userData = require('./user');
+const userService = require('./user');
 const colors = require('./colors');
 
 pg.defaults.ssl = true;
@@ -136,7 +136,7 @@ function  setSessionAndUser(senderID) {
 
     if (!usersMap.has(senderID))
 	{
-		userData(function (user) {
+        userService.addUser(function (user) {
 			usersMap.set(senderID,user);
 			
         },senderID);
@@ -192,9 +192,50 @@ function handleMessageAttachments(messageAttachments, senderID){
 
 function handleQuickReply(senderID, quickReply, messageId) {
 	var quickReplyPayload = quickReply.payload;
+
+	switch (quickReplyPayload)
+	{
+		case "NEWS_WEEK":
+		{
+            userService.newsletterSettings(function (updated) {
+
+				if(updated)
+				{
+					sendTextMessage(senderID,"Thank you for subscribing!"
+						+" If you want to unsubscribe just type \"unsubscribe\" .");
+				}
+				else {
+                    sendTextMessage(senderID,"Not available now! try again later!!");
+
+				}
+            },1);
+
+		}
+			break;
+
+        case "NEWS_DAY":
+		{
+            userService.newsletterSettings(function (updated) {
+
+                if(updated)
+                {
+                    sendTextMessage(senderID,"Thank you for subscribing!"
+                        +" If you want to unsubscribe just type \"unsubscribe\" .");
+                }
+                else {
+                    sendTextMessage(senderID,"Not available now! try again later!!");
+
+                }
+            },2);
+
+		}
+            break;
+		default :	sendToApiAi(senderID, quickReplyPayload);
+
+		break;
+    }
 	console.log("Quick reply for message %s with payload %s", messageId, quickReplyPayload);
 	//send payload to api.ai
-	sendToApiAi(senderID, quickReplyPayload);
 }
 
 //https://developers.facebook.com/docs/messenger-platform/webhook-reference/message-echo
@@ -214,7 +255,7 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 					reply = "In what color would you like to have it?";
 				}
 				else {
-                    reply = "would you like to order it in your favorite color"+color+" ?";
+                    reply = "would you like to order it in your favorite color "+color+" ?";
 
 				}
                 sendTextMessage(sender,reply);
@@ -831,6 +872,25 @@ function callSendAPI(messageData) {
 }
 
 
+function sendNewsSubscribe(senderID) {
+	let responseText = "I can send you specials and offers. How often would you like to recieve them?";
+	let replies = [
+		{
+			"content_type" : "text",
+			"title" : "Once a week",
+			"payload":"NEWS_WEEK"},
+        {
+            "content_type" : "text",
+            "title" : "Once a day",
+            "payload":"NEWS_DAY"}
+	];
+
+	sendQuickReply(senderID,responseText,replies);
+
+
+
+}
+
 
 /*
  * Postback Event
@@ -850,6 +910,14 @@ function receivedPostback(event) {
 	var payload = event.postback.payload;
 
 	switch (payload) {
+
+
+
+		case 'NEWS':
+		{
+            sendNewsSubscribe(senderID);
+		}
+			break;
 
 		case 'GET_STARTED':
 		{
