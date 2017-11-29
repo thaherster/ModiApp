@@ -211,8 +211,9 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 			colors.readAllColors(function (allColors) {
 				let allColorString= allColors.join(',');
 				let reply = 'These are the Colors available ${allColorString}. What is your favorite color?';
-				sendTextMessage(sender,reply);
-				sendTextMessage(sender,allColorString);
+				sendTextMessage(sender,reply+" 0");
+				sendTextMessage(sender,allColorString+" 1");
+				sendTextMessage(sender,allColors.toString()+" 2");
 
             })
 		}
