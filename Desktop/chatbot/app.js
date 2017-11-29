@@ -246,6 +246,21 @@ function handleEcho(messageId, appId, metadata) {
 
 function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 	switch (action) {
+		case "unsubscribe":
+		{
+            userService.newsletterSettings(function (updated) {
+
+                if(updated)
+                {
+                    sendTextMessage(sender,"You are unsubscribed!!.");
+                }
+                else {
+                    sendTextMessage(sender,"Not available now! try again later!!");
+
+                }
+            },0);
+		}
+			break;
 		case 'buy-iphone':
 		{
 			colors.readUserColor(function (color) {
