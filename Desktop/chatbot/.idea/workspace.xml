@@ -17,8 +17,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="210" column="29" lean-forward="true" selection-start-line="210" selection-start-column="29" selection-end-line="210" selection-end-column="29" />
+            <state relative-caret-position="225">
+              <caret line="210" column="25" lean-forward="false" selection-start-line="210" selection-start-column="25" selection-end-line="210" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -37,8 +37,8 @@
       <file leaf-file-name="colors.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/colors.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="34" column="57" lean-forward="true" selection-start-line="34" selection-start-column="57" selection-end-line="34" selection-end-column="57" />
+            <state relative-caret-position="345">
+              <caret line="23" column="34" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -64,8 +64,8 @@
       <find>sess</find>
       <find>gree</find>
       <find>get_star</find>
-      <find>handleapi</find>
       <find>request</find>
+      <find>handleapi</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -156,12 +156,12 @@
       <workItem from="1511690173387" duration="6186000" />
       <workItem from="1511763180029" duration="7243000" />
       <workItem from="1511861960522" duration="1053000" />
-      <workItem from="1511934594976" duration="4698000" />
+      <workItem from="1511934594976" duration="4857000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19180000" />
+    <option name="totallyTimeSpent" value="19339000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -274,14 +274,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="210" column="29" lean-forward="true" selection-start-line="210" selection-start-column="29" selection-end-line="210" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -298,10 +290,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="210" column="25" lean-forward="false" selection-start-line="210" selection-start-column="25" selection-end-line="210" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/colors.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="57" lean-forward="true" selection-start-line="34" selection-start-column="57" selection-end-line="34" selection-end-column="57" />
+        <state relative-caret-position="345">
+          <caret line="23" column="34" lean-forward="true" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
           <folding />
         </state>
       </provider>

@@ -13,34 +13,22 @@ module.exports = {
                 return console.error('Error acquiring client', err.stack);
             }else {
                 console.log("Client Connected!!!");
-
-            // client.query('SELECT * FROM public.colors',function (err,result) {
-            //     if(err)
-            //     {
-            //         console.log(err +" -------_---__-__-_-_-_-_-___-_--_--_--_");
-            //
-            //         callback([]);
-            //     }
-            //     else {
-            //         let colors = [];
-            //         for (let i = 0; i < result.rows.length; i++) {
-            //             console.log(result.toString()+" -----_______--_-_-_--_-_-");
-            //             colors.push(result.rows[i]['color']);
-            //         }
-            //         callback(colors);
-            //     }
-            //
-            // });
-
                 client.query(`SELECT * FROM public.colors `,
                     function(err, result) {
-                        console.log('query result ' + result.toString());
-                        if (err) {
-                            console.log('Query error: ' + err);
-                        } else {
-                            console.log('rows: ' + result.rows.length);
+                        if(err)
+                            {
+                                console.log(err +" -------_---__-__-_-_-_-_-___-_--_--_--_");
 
-                        }
+                                callback([]);
+                            }
+                            else {
+                                let colors = [];
+                                for (let i = 0; i < result.rows.length; i++) {
+                                    console.log(result.toString()+" -----_______--_-_-_--_-_-");
+                                    colors.push(result.rows[i]['color']);
+                                }
+                                callback(colors);
+                            }
                     });
 
 
