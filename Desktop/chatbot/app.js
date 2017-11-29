@@ -206,6 +206,14 @@ function handleEcho(messageId, appId, metadata) {
 function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 	switch (action) {
 
+		case "colors.colors-favorites":
+			colors.updateUserColor(parameters['color'],sender);
+			let reply ="I like it too, i will remeber that!!";
+            sendTextMessage(sender,reply);
+
+
+            break;
+
 		case "iphone-colors":
 		{
 			colors.readAllColors(function (allColors) {
