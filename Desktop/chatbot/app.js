@@ -205,10 +205,28 @@ function handleEcho(messageId, appId, metadata) {
 
 function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 	switch (action) {
+		case 'buy-iphone':
+		{
+			colors.readUserColor(function (color) {
+				let reply;
+				if(color==='')
+				{
+					reply = "In what color would you like to have it?";
+				}
+				else {
+                    reply = "would you like to order it in your favorite color"+color+" ?";
+
+				}
+                sendTextMessage(sender,reply);
+
+
+            },sender)
+		}
+			break;
 
 		case "colors.colors-favorites":
 			colors.updateUserColor(parameters['color'],sender);
-			let reply ="I like it too, i will remeber that!!";
+			let reply ="OH,I like it too, i will remeber that!!";
             sendTextMessage(sender,reply);
 
 
