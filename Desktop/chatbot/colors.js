@@ -14,23 +14,51 @@ module.exports = {
             }else {
                 console.log("Client Connected!!!");
 
-            client.query('SELECT * FROM public.colors',function (err,result) {
-                if(err)
-                {
-                    console.log(err +" -------_---__-__-_-_-_-_-___-_--_--_--_");
+            // client.query('SELECT * FROM public.colors',function (err,result) {
+            //     if(err)
+            //     {
+            //         console.log(err +" -------_---__-__-_-_-_-_-___-_--_--_--_");
+            //
+            //         callback([]);
+            //     }
+            //     else {
+            //         let colors = [];
+            //         for (let i = 0; i < result.rows.length; i++) {
+            //             console.log(result.toString()+" -----_______--_-_-_--_-_-");
+            //             colors.push(result.rows[i]['color']);
+            //         }
+            //         callback(colors);
+            //     }
+            //
+            // });
 
-                    callback([]);
-                }
-                else {
-                    let colors = [];
-                    for (let i = 0; i < result.rows.length; i++) {
-                        console.log(result.toString()+" -----_______--_-_-_--_-_-");
-                        colors.push(result.rows[i]['color']);
-                    }
-                    callback(colors);
-                }
+                client.query(`SELECT id FROM users WHERE fb_id='${userId}' LIMIT 1`,
+                    function(err, result) {
+                        console.log('query result ' + result);
+                        if (err) {
+                            console.log('Query error: ' + err);
+                        } else {
+                            console.log('rows: ' + result.rows.length);
+                            if (result.rows.length === 0) {
+                                let sql = 'INSERT INTO users (fb_id, first_name, last_name, profile_pic, ' +
+                                    'locale, timezone, gender) VALUES ($1, $2, $3, $4, $5, $6, $7)';
+                                console.log('sql: ' + sql);
+                                client.query(sql,
+                                    [
+                                        userId,
+                                        user.first_name,
+                                        user.last_name,
+                                        user.profile_pic,
+                                        user.locale,
+                                        user.timezone,
+                                        user.gender
+                                    ]);
+                            }
+                        }
+                    });
 
-            });
+
+
             done();}
         });
         pool.end();
