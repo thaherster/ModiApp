@@ -29,7 +29,7 @@ module.exports = {
                                 console.log(" colors : "+i+" "+result.rows[i]['color']);
                             }
                             callback(colors);
-                        };
+                        }
                     });
             console.log("after query : ");
 
