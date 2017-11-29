@@ -23,7 +23,7 @@ module.exports =  function (callback,userId) {
                     user.first_name, user.last_name, user.gender);
 
                 //connection pool
-               ∂ //a connection pool is a group of db connection
+                //a connection pool is a group of db connection
                 //sitting around waitig to be handled and used
                 var pool = new pg.Pool(config.PG_CONFIG);
                 pool.connect(function(err, client, done) {
