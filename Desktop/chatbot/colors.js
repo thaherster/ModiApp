@@ -33,7 +33,7 @@ module.exports = {
                     });
             done();
         });
-        pool.end();
+        // pool.end();
     },
 
 
@@ -56,7 +56,7 @@ module.exports = {
                     });
             done();
         });
-        pool.end();
+        // pool.end();
     },
 
     updateUserColor: function(color, userId) {
@@ -89,7 +89,7 @@ module.exports = {
 
             done();
         });
-        pool.end();
+        // pool.end();
     }
 
 
