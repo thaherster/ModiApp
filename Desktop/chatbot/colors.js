@@ -3,17 +3,18 @@ const request = require('request');
 const config = require('./config');
 const pg = require('pg');
 pg.defaults.ssl = true;
+const pool = new pg.Pool(config.PG_CONFIG);
+
 
 module.exports = {
 
     readAllColors: function(callback) {
-        var pool = new pg.Pool(config.PG_CONFIG);
         pool.connect(function(err, client, done) {
             if (err) {
                 return console.error('Error acquiring client', err.stack);
-            }else {
+            }
                 console.log("Client Connected!!!");
-                client.query(`SELECT * FROM public.colors `,
+                client.query(`SELECT color FROM public.colors `,
                     function(err, result) {
                         if(err)
                             {
@@ -30,17 +31,13 @@ module.exports = {
                                 callback(colors);
                             }
                     });
-
-
-
-            done();}
+            done();
         });
         pool.end();
     },
 
 
     readUserColor: function(callback, userId) {
-        var pool = new pg.Pool(config.PG_CONFIG);
         pool.connect(function(err, client, done) {
             if (err) {
                 return console.error('Error acquiring client', err.stack);
@@ -55,7 +52,7 @@ module.exports = {
                             callback('');
                         } else {
                             callback(result.rows[0]['color']);
-                        };
+                        }
                     });
             done();
         });
@@ -63,7 +60,6 @@ module.exports = {
     },
 
     updateUserColor: function(color, userId) {
-        var pool = new pg.Pool(config.PG_CONFIG);
         pool.connect(function(err, client, done) {
             if (err) {
                 return console.error('Error acquiring client', err.stack);

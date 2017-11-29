@@ -215,7 +215,7 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 				sendTextMessage(sender,allColorString+" 1");
 				sendTextMessage(sender,allColors.toString()+" 2");
 
-            })
+            });
 		}
 			break;
 
