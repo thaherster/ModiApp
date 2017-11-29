@@ -11,23 +11,28 @@ module.exports = {
         pool.connect(function(err, client, done) {
             if (err) {
                 return console.error('Error acquiring client', err.stack);
-            }
-            client.query(
-                    'SELECT color FROM public.colors',
-                    function(err, result) {
-                        if (err) {
-                            console.log(err +" -------_---__-__-_-_-_-_-___-_--_--_--_");
-                            callback([]);
-                        } else {
-                            let colors = [];
-                            for (let i = 0; i < result.rows.length; i++) {
-                                console.log(result.toString()+" -----_______--_-_-_--_-_-");
-                                colors.push(result.rows[i]['color']);
-                            }
-                            callback(colors);
-                        }
-                    });
-            done();
+            }else {
+                console.log("Client Connected!!!");
+
+            client.query('SELECT color FROM public.colors',function (err,result) {
+                if(err)
+                {
+                    console.log(err +" -------_---__-__-_-_-_-_-___-_--_--_--_");
+
+                    callback([]);
+                }
+                else {
+                    let colors = [];
+                    for (let i = 0; i < result.rows.length; i++) {
+                        console.log(result.toString()+" -----_______--_-_-_--_-_-");
+                        colors.push(result.rows[i]['color']);
+                    }
+                    callback(colors);
+                }
+
+            });
+
+            done();}
         });
         pool.end();
     },
