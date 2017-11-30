@@ -939,7 +939,7 @@ function showMenu(senderID) {
             "subtitle":"We'\''ve got the right hat for everyone.",
             "buttons":[
                 {
-                    "type":"text",
+                    "type":"postback",
                     "payload":"FOOD_NAME",
                     "title":"select"
                 }
