@@ -873,6 +873,7 @@ function greetUserText(userId) {
 				sendQuickReply(userId,responseText,replies);
 
 
+
 }
 
 /*
@@ -928,6 +929,29 @@ function sendNewsSubscribe(senderID) {
 }
 
 
+function showMenu(senderID) {
+    //fetch menu items
+
+    let elements = [
+        {
+            "title":"title food name",
+            "image_url":"https://www.w3schools.com/w3css/img_lights.jpg",
+            "subtitle":"We'\''ve got the right hat for everyone.",
+            "buttons":[
+                {
+                    "type":"text",
+                    "payload":"FOOD_NAME",
+                    "title":"select"
+                }
+            ]
+        }
+    ];
+
+    sendGenericMessage(senderID,elements);
+
+
+}
+
 /*
  * Postback Event
  *
@@ -963,8 +987,8 @@ function receivedPostback(event) {
 			break;
 		case 'MENU':
 		{
-            sendTextMessage(senderID, "restaurant menu");
 			//show menu
+			showMenu(senderID);
 
 		}
 			break;
