@@ -11,6 +11,7 @@ const app = express();
 const uuid = require('uuid');
 const userService = require('./user');
 const colors = require('./colors');
+const men = require('./menu_items');
 
 pg.defaults.ssl = true;
 
@@ -932,16 +933,17 @@ function sendNewsSubscribe(senderID) {
 function showMenu(senderID) {
     //fetch menu items
 
+
     let elements = [
         {
-            "title":"title food name",
+            "title":"Soups",
             "image_url":"https://www.w3schools.com/w3css/img_lights.jpg",
-            "subtitle":"We'\''ve got the right hat for everyone.",
+            "subtitle":"Best Veg soups in town",
             "buttons":[
                 {
                     "type":"postback",
                     "payload":"FOOD_NAME",
-                    "title":"select"
+                    "title":"Soups"
                 }
             ]
         }
