@@ -15,7 +15,7 @@ curl -X POST -H "Content-Type: application/json" -d '{
           "type":"nested",
           "call_to_actions":[
             {
-              "title":"My Shopping Cart",
+              "title":"My Food Cart",
               "type":"postback",
               "payload":"SHOPCART"
             },
@@ -23,11 +23,6 @@ curl -X POST -H "Content-Type: application/json" -d '{
               "title":"Confirm Order",
               "type":"postback",
               "payload":"CONFIRMORDER"
-            },
-            {
-                "type":"postback",
-                "payload":"REVIEW",
-                "title":"User Reviews"
             }
           ]
         },

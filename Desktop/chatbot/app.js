@@ -851,6 +851,28 @@ function greetUserText(userId) {
 
 	let user = usersMap.get(userId);
 				sendTextMessage(userId, "Welcome " + user.first_name + '!');
+				sendTextMessage(userId, "I am the Foodie Chat Bot, here to assist you in ordering food from Foodie!!");
+				let responseText = "What would you like to do ?";
+    let replies =[
+        {
+            "content_type":"text",
+            "title":"Menu",
+            "payload":"MENU"
+        },
+        {
+            "content_type":"text",
+            "title":"Food Cart",
+            "payload":"SHOPCART"
+        },
+        {
+            "content_type":"text",
+            "title":"Order Food",
+            "payload":"ORDERFOOD"
+        }
+
+    ];
+				sendQuickReply(userId,responseText,replies);
+
 
 }
 
@@ -939,30 +961,37 @@ function receivedPostback(event) {
 			greetUserText(senderID);
 
 		}
-			break;case 'MENU':
+			break;
+		case 'MENU':
 		{
-			sendToApiAi(senderID, "restaurant menu");
+            sendTextMessage(senderID, "restaurant menu");
 
 		}
 			break;
 
 		case 'SHOPCART':
 		{
-            sendToApiAi(senderID, "user shopcart");
+            sendTextMessage(senderID, "user shopcart");
 
 		}
+			break;
+		case 'FOODORDER':
+		{
+            sendTextMessage(senderID, "user FOODORDER");
+
+        }
 			break;
 
         case 'CONFIRMORDER':
         {
-            sendToApiAi(senderID, "user confirm order");
+            sendTextMessage(senderID, "user confirm order");
 
         }
             break;
 
         case 'REVIEW':
         {
-            sendToApiAi(senderID, "restaurant reviews");
+            sendTextMessage(senderID, "restaurant reviews");
 
         }
             break;
