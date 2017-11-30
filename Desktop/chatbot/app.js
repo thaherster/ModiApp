@@ -850,9 +850,8 @@ function greetUserText(userId) {
 	//first read user firstname
 
 	let user = usersMap.get(userId);
-				sendTextMessage(userId, "Welcome " + user.first_name + '!');
-				sendTextMessage(userId, "I am the Foodie Chat Bot, here to assist you in ordering food from Foodie!!");
-				let responseText = "What would you like to do ?";
+    let responseText = "Welcome " + user.first_name + "!"+" What would you like to do ?";
+
     let replies =[
         {
             "content_type":"text",
@@ -965,6 +964,7 @@ function receivedPostback(event) {
 		case 'MENU':
 		{
             sendTextMessage(senderID, "restaurant menu");
+			//show menu
 
 		}
 			break;
@@ -972,12 +972,13 @@ function receivedPostback(event) {
 		case 'SHOPCART':
 		{
             sendTextMessage(senderID, "user shopcart");
-
+			//show shopcart
 		}
 			break;
 		case 'FOODORDER':
 		{
             sendTextMessage(senderID, "user FOODORDER");
+            // start food ordering intent
 
         }
 			break;
@@ -985,6 +986,7 @@ function receivedPostback(event) {
         case 'CONFIRMORDER':
         {
             sendTextMessage(senderID, "user confirm order");
+            //confirm order, clear shop cart
 
         }
             break;
