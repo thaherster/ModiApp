@@ -11,10 +11,9 @@ const app = express();
 const uuid = require('uuid');
 const userService = require('./user');
 const colors = require('./colors');
-const men = require('./menu_items');
+let soups = require('./menu_items').SOUPS;
 
 pg.defaults.ssl = true;
-
 
 // Messenger API parameters
 if (!config.FB_PAGE_TOKEN) {
@@ -867,7 +866,7 @@ function greetUserText(userId) {
         {
             "content_type":"text",
             "title":"Order Food",
-            "payload":"ORDERFOOD"
+            "payload":"FOODORDER"
         }
 
     ];
@@ -942,13 +941,13 @@ function showMenu(senderID) {
             "buttons":[
                 {
                     "type":"postback",
-                    "payload":"FOOD_NAME",
+                    "payload":"SOUP_PAY",
                     "title":"Soups"
                 }
             ]
         },
         {
-            "title":"Soups",
+            "title":"SA",
             "image_url":"https://www.w3schools.com/w3css/img_lights.jpg",
             "subtitle":"Best Veg soups in town",
             "buttons":[
@@ -960,7 +959,7 @@ function showMenu(senderID) {
             ]
         },
         {
-            "title":"Soups",
+            "title":"ASD",
             "image_url":"https://www.w3schools.com/w3css/img_lights.jpg",
             "subtitle":"Best Veg soups in town",
             "buttons":[
@@ -972,7 +971,7 @@ function showMenu(senderID) {
             ]
         },
         {
-            "title":"Soups",
+            "title":"SDF",
             "image_url":"https://www.w3schools.com/w3css/img_lights.jpg",
             "subtitle":"Best Veg soups in town",
             "buttons":[
@@ -984,7 +983,7 @@ function showMenu(senderID) {
             ]
         },
         {
-            "title":"Soups",
+            "title":"ASD",
             "image_url":"https://www.w3schools.com/w3css/img_lights.jpg",
             "subtitle":"Best Veg soups in town",
             "buttons":[
@@ -996,7 +995,7 @@ function showMenu(senderID) {
             ]
         },
         {
-            "title":"Soups",
+            "title":"GDF",
             "image_url":"https://www.w3schools.com/w3css/img_lights.jpg",
             "subtitle":"Best Veg soups in town",
             "buttons":[
@@ -1010,6 +1009,36 @@ function showMenu(senderID) {
     ];
 
     sendGenericMessage(senderID,elements);
+
+
+}
+
+function showDIISH(senderID, payload) {
+
+        //fetch menu items
+	let elements =[];
+	soups.forEach(soup => {
+		elements.push({
+            "title": soup.name,
+            "image_url":soup.imageUrl,
+            "subtitle":soup.description,
+            "buttons":[
+                {
+                    "type":"postback",
+                    "payload":soup.key,
+                    "title":soup.name
+                }
+            ]
+        })
+
+	});
+
+
+
+        sendGenericMessage(senderID,elements);
+
+
+
 
 
 }
@@ -1035,22 +1064,19 @@ function receivedPostback(event) {
 
 
 
-		case 'NEWS':
-		{
-            sendNewsSubscribe(senderID);
-		}
-			break;
+        case 'MENU':
+        {
+            //show menu
+            showMenu(senderID);
 
-		case 'GET_STARTED':
-		{
-			greetUserText(senderID);
+        }
+            break;
 
-		}
-			break;
-		case 'MENU':
+
+		case 'SOUP_PAY':
 		{
 			//show menu
-			showMenu(senderID);
+			showDIISH(senderID,payload);
 
 		}
 			break;
@@ -1073,6 +1099,19 @@ function receivedPostback(event) {
         {
             sendTextMessage(senderID, "user confirm order");
             //confirm order, clear shop cart
+
+        }
+            break;
+
+        case 'NEWS':
+        {
+            sendNewsSubscribe(senderID);
+        }
+            break;
+
+        case 'GET_STARTED':
+        {
+            greetUserText(senderID);
 
         }
             break;
