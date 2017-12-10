@@ -1040,12 +1040,12 @@ function showDIISH(senderID, payload) {
 		elements.push({
             "title": item.name,
             "image_url":item.imageUrl,
-            "subtitle":item.description,
+            "subtitle":"Rs "+item.price,
             "buttons":[
                 {
                     "type":"postback",
                     "payload":item.key,
-                    "title":item.name
+                    "title":"Add to Cart"
                 }
             ]
         })
@@ -1070,14 +1070,14 @@ function showDIISH(senderID, payload) {
  * 
  */
 function receivedPostback(event) {
-	var senderID = event.sender.id;
-	var recipientID = event.recipient.id;
-	var timeOfPostback = event.timestamp;
+	let senderID = event.sender.id;
+	let recipientID = event.recipient.id;
+	let timeOfPostback = event.timestamp;
     setSessionAndUser(senderID);
 
 	// The 'payload' param is a developer-defined field which is set in a postback 
 	// button for Structured Messages. 
-	var payload = event.postback.payload;
+	let payload = event.postback.payload;
 
 	switch (payload) {
 

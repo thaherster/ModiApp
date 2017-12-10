@@ -14,21 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="1031" column="30" lean-forward="false" selection-start-line="1031" selection-start-column="30" selection-end-line="1031" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="menu_items.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/menu_items.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="101" column="0" lean-forward="true" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+            <state relative-caret-position="310">
+              <caret line="1083" column="0" lean-forward="true" selection-start-line="1083" selection-start-column="0" selection-end-line="1083" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -84,8 +74,8 @@
         <option value="$PROJECT_DIR$/colors.js" />
         <option value="$PROJECT_DIR$/user.js" />
         <option value="$PROJECT_DIR$/menu.txt" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/menu_items.js" />
+        <option value="$PROJECT_DIR$/app.js" />
       </list>
     </option>
   </component>
@@ -172,12 +162,12 @@
       <workItem from="1512495957875" duration="735000" />
       <workItem from="1512802963800" duration="277000" />
       <workItem from="1512822746595" duration="2259000" />
-      <workItem from="1512887900662" duration="2243000" />
+      <workItem from="1512887900662" duration="4030000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34765000" />
+    <option name="totallyTimeSpent" value="36552000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -396,18 +386,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
+    <entry file="file://$PROJECT_DIR$/menu_items.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="1031" column="30" lean-forward="false" selection-start-line="1031" selection-start-column="30" selection-end-line="1031" selection-end-column="30" />
+        <state relative-caret-position="75">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/menu_items.js">
+    <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="101" column="0" lean-forward="true" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+        <state relative-caret-position="310">
+          <caret line="1083" column="0" lean-forward="true" selection-start-line="1083" selection-start-column="0" selection-end-line="1083" selection-end-column="0" />
           <folding />
         </state>
       </provider>
