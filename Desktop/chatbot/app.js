@@ -12,6 +12,10 @@ const uuid = require('uuid');
 const userService = require('./user');
 const colors = require('./colors');
 let soups = require('./menu_items').SOUPS;
+let starter = require('./menu_items').STARTER;
+let friedrice = require('./menu_items').FRIEDRICE;
+let noodles = require('./menu_items').NOODLES;
+let maincourse = require('./menu_items').MAINCOURSE;
 
 pg.defaults.ssl = true;
 
@@ -1002,19 +1006,46 @@ function showMenu(senderID) {
 }
 
 function showDIISH(senderID, payload) {
+	let items;
+	switch (payload){
+		case 'PAY_SOUP':
+			items = soups;
+
+			break;
+
+        case 'PAY_STARTER':
+            items = starter;
+
+            break;
+
+        case 'PAY_NOODLES':
+            items = noodles;
+
+            break;
+
+        case 'PAY_FRIED_RICE':
+            items = friedrice;
+
+            break;
+
+        case 'PAY_MAIN_COURSE':
+            items = maincourse;
+
+            break;
+	}
 
         //fetch menu items
 	let elements =[];
-	soups.forEach(soup => {
+	items.forEach(item => {
 		elements.push({
-            "title": soup.name,
-            "image_url":soup.imageUrl,
-            "subtitle":soup.description,
+            "title": item.name,
+            "image_url":item.imageUrl,
+            "subtitle":item.description,
             "buttons":[
                 {
                     "type":"postback",
-                    "payload":soup.key,
-                    "title":soup.name
+                    "payload":item.key,
+                    "title":item.name
                 }
             ]
         })
@@ -1068,6 +1099,35 @@ function receivedPostback(event) {
 
 		}
 			break;
+        case 'PAY_STARTER':
+        {
+            //show menu
+            showDIISH(senderID,payload);
+
+        }
+            break;
+        case 'PAY_NOODLES':
+        {
+            //show menu
+            showDIISH(senderID,payload);
+
+        }
+            break;
+        case 'PAY_FRIED_RICE':
+        {
+            //show menu
+            showDIISH(senderID,payload);
+
+        }
+            break;
+        case 'PAY_MAIN_COURSE':
+        {
+            //show menu
+            showDIISH(senderID,payload);
+
+        }
+            break;
+
 
 		case 'SHOPCART':
 		{
