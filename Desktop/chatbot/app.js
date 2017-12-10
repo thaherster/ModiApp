@@ -1045,7 +1045,7 @@ function showDIISH(senderID, payload) {
                 {
                     "type":"postback",
                     "payload":item.key,
-                    "title":"Add "+item.title+" to Cart"
+                    "title":"Add "+item.name+" to Cart"
                 }
             ]
         })
