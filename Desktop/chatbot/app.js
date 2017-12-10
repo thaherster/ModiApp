@@ -936,73 +936,61 @@ function showMenu(senderID) {
     let elements = [
         {
             "title":"Soups",
-            "image_url":"https://www.w3schools.com/w3css/img_lights.jpg",
-            "subtitle":"Best Veg soups in town",
+            "image_url":"http://www.seriouseats.com/recipes/assets_c/2017/02/20170111-pressure-cooker-beef-barley-soup-vicky-wasik-13-thumb-1500xauto-436342.jpg",
+            "subtitle":"For each mouth, a different soup!",
             "buttons":[
                 {
                     "type":"postback",
-                    "payload":"SOUP_PAY",
+                    "payload":"PAY_SOUP",
                     "title":"Soups"
                 }
             ]
         },
         {
-            "title":"SA",
-            "image_url":"https://www.w3schools.com/w3css/img_lights.jpg",
-            "subtitle":"Best Veg soups in town",
+            "title":"Starters",
+            "image_url":"http://digtoknow.com/wp-content/uploads/2015/09/Starter-Recipes.jpg",
+            "subtitle":"Best starters in town",
             "buttons":[
                 {
                     "type":"postback",
-                    "payload":"FOOD_NAME",
-                    "title":"Soups"
+                    "payload":"PAY_STARTER",
+                    "title":"Starters"
                 }
             ]
         },
         {
-            "title":"ASD",
-            "image_url":"https://www.w3schools.com/w3css/img_lights.jpg",
-            "subtitle":"Best Veg soups in town",
+            "title":"Noodles",
+            "image_url":"http://www.ruchiskitchen.com/wp-content/uploads/2016/12/spicy-peanut-noodles-recipe-14.jpg",
+            "subtitle":"Noodles are not only amusing but delicious...",
             "buttons":[
                 {
                     "type":"postback",
-                    "payload":"FOOD_NAME",
-                    "title":"Soups"
+                    "payload":"PAY_NOODLES",
+                    "title":"Noodles"
                 }
             ]
         },
         {
-            "title":"SDF",
-            "image_url":"https://www.w3schools.com/w3css/img_lights.jpg",
-            "subtitle":"Best Veg soups in town",
+            "title":"Fried Rice",
+            "image_url":"https://static01.nyt.com/images/2016/04/04/dining/04COOKING-FRIEDRICE1/04COOKING-FRIEDRICE1-superJumbo.jpg",
+            "subtitle":"Keep calm and eat Fried Rice!",
             "buttons":[
                 {
                     "type":"postback",
-                    "payload":"FOOD_NAME",
-                    "title":"Soups"
+                    "payload":"PAY_FRIED_RICE",
+                    "title":"Fried Rice"
                 }
             ]
         },
         {
-            "title":"ASD",
-            "image_url":"https://www.w3schools.com/w3css/img_lights.jpg",
-            "subtitle":"Best Veg soups in town",
+            "title":"Main Course",
+            "image_url":"http://www.drgourmet.com/images/food/beefstew350.jpg",
+            "subtitle":"Good food is good mood!",
             "buttons":[
                 {
                     "type":"postback",
-                    "payload":"FOOD_NAME",
-                    "title":"Soups"
-                }
-            ]
-        },
-        {
-            "title":"GDF",
-            "image_url":"https://www.w3schools.com/w3css/img_lights.jpg",
-            "subtitle":"Best Veg soups in town",
-            "buttons":[
-                {
-                    "type":"postback",
-                    "payload":"FOOD_NAME",
-                    "title":"Soups"
+                    "payload":"PAY_MAIN_COURSE",
+                    "title":"Main Course"
                 }
             ]
         }
@@ -1073,7 +1061,7 @@ function receivedPostback(event) {
             break;
 
 
-		case 'SOUP_PAY':
+		case 'PAY_SOUP':
 		{
 			//show menu
 			showDIISH(senderID,payload);
