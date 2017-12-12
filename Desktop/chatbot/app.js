@@ -11,6 +11,10 @@ const app = express();
 const uuid = require('uuid');
 const userService = require('./user');
 const colors = require('./colors');
+const admin = require("firebase-admin");
+let serviceAccount = require("foodi.json");
+
+
 let soups = require('./menu_items').SOUPS;
 let starter = require('./menu_items').STARTER;
 let friedrice = require('./menu_items').FRIEDRICE;
@@ -38,6 +42,17 @@ if (!config.SERVER_URL) { //used for ink to static files
 if (!config.PG_CONFIG) {
 	throw new Error('missing PG_CONFIG');
 }
+
+
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://foodiebot-701a4.firebaseio.com"
+});
+
+let db = admin.database();
+let ref = db.ref("blaaah");
+
 
 
 
@@ -1160,6 +1175,18 @@ function receivedPostback(event) {
         case 'GET_STARTED':
         {
             greetUserText(senderID);
+
+            let usersRef = ref.child("users");
+            usersRef.set({
+                alanisawesome: {
+                    date_of_birth: "June 23, 1912",
+                    full_name: "Alan Turing"
+                },
+                gracehop: {
+                    date_of_birth: "December 9, 1906",
+                    full_name: "Grace Hopper"
+                }
+            });
 
         }
             break;
