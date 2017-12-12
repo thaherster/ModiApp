@@ -12,7 +12,7 @@ const uuid = require('uuid');
 const userService = require('./user');
 const colors = require('./colors');
 const admin = require("firebase-admin");
-let serviceAccount = require("foodi.json");
+let serviceAccount = require("./foodi.json");
 
 
 let soups = require('./menu_items').SOUPS;
@@ -42,6 +42,7 @@ if (!config.SERVER_URL) { //used for ink to static files
 if (!config.PG_CONFIG) {
 	throw new Error('missing PG_CONFIG');
 }
+
 
 
 
