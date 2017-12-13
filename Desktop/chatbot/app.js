@@ -1095,17 +1095,17 @@ function receivedPostback(event) {
 	// button for Structured Messages. 
 	let payload = event.postback.payload;
 
-	let menus = { "soup" : soups,
-     "starter" : starter,
-     "friedrice" : friedrice,
-     "noodles" : noodles,
-		"maincourse" : maincourse
+	let menus = { "1" : soups,
+     "2" : starter,
+     "3" : friedrice,
+     "4" : noodles,
+		"5" : maincourse
 	};
 
 	let result = {};
 
-    for (let key in menus) {
-        if (menus.hasOwnProperty(key) && menus[key].key === payload){
+    for (let ke in menus) {
+        if (menus.hasOwnProperty(ke) && menus[ke].key === payload){
             sendTextMessage(senderID, "added to cart " + payload);
 
         }
