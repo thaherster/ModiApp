@@ -13,7 +13,7 @@ exports.SOUPS = [
     description: "Hot and Sour Veg Soup",
     price : 80
 
-},
+    },
     {
         name: "Sweet Corn Soup",
         key: 'SWEET_CORN_SOUP',

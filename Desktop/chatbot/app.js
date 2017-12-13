@@ -1102,6 +1102,8 @@ function receivedPostback(event) {
 		"5" : maincourse
 	};
 
+	console.log(" MENU ======== "+ menus);
+
 	let result = {};
 
     for (let ke in menus) {
