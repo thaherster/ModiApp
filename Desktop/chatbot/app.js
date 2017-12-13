@@ -866,6 +866,15 @@ function sendAccountLinking(recipientId) {
 }
 
 
+   function delayedPush (item) {
+    return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            cartref.push(item)
+                .then(resolve, reject);
+        }, 1);
+    });
+}
+
 
 
 function greetUserText(userId) {
@@ -899,8 +908,8 @@ function greetUserText(userId) {
 }
 
 /*
- * Call the Send API. The message data goes in the body. If successful, we'll 
- * get the message id in a response 
+ * Call the Send API. The message data goes in the body. If successful, we'll
+ * get the message id in a response
  *
  */
 function callSendAPI(messageData) {
@@ -1083,9 +1092,9 @@ function showDIISH(senderID, payload) {
 /*
  * Postback Event
  *
- * This event is called when a postback is tapped on a Structured Message. 
+ * This event is called when a postback is tapped on a Structured Message.
  * https://developers.facebook.com/docs/messenger-platform/webhook-reference/postback-received
- * 
+ *
  */
 function receivedPostback(event) {
 	let senderID = event.sender.id;
@@ -1093,8 +1102,8 @@ function receivedPostback(event) {
 	let timeOfPostback = event.timestamp;
     setSessionAndUser(senderID);
 	let cart = false;
-	// The 'payload' param is a developer-defined field which is set in a postback 
-	// button for Structured Messages. 
+	// The 'payload' param is a developer-defined field which is set in a postback
+	// button for Structured Messages.
 	let payload = event.postback.payload;
     let  menus = soups.concat(starter.concat(friedrice.concat(noodles).concat(maincourse)));
 
@@ -1108,18 +1117,15 @@ function receivedPostback(event) {
 
 
     for (let ke in menus) {
-        if (menus.hasOwnProperty(ke) && menus[ke].key === payload) {
-            console.log("CART ITEM " + JSON.stringify(ke));
+        if (menus.hasOwnProperty(ke) && menus[ke].key === payload){
+        	console.log("CART ITEM "+ JSON.stringify(ke));
 
-            // cartref.child(senderID).push().set(ke);
 
-            // delayedPush(senderID,ke);
             sendTextMessage(senderID, "added to cart " + payload);
-            cart = true;
+			cart =true;
 
         }
     }
-
 
 if(!cart)
 {switch (payload) {
@@ -1252,7 +1258,7 @@ if(!cart)
  *
  * This event is called when a previously-sent message has been read.
  * https://developers.facebook.com/docs/messenger-platform/webhook-reference/message-read
- * 
+ *
  */
 function receivedMessageRead(event) {
 	var senderID = event.sender.id;
@@ -1272,7 +1278,7 @@ function receivedMessageRead(event) {
  * This event is called when the Link Account or UnLink Account action has been
  * tapped.
  * https://developers.facebook.com/docs/messenger-platform/webhook-reference/account-linking
- * 
+ *
  */
 function receivedAccountLink(event) {
 	var senderID = event.sender.id;
@@ -1288,7 +1294,7 @@ function receivedAccountLink(event) {
 /*
  * Delivery Confirmation Event
  *
- * This event is sent to confirm the delivery of a message. Read more about 
+ * This event is sent to confirm the delivery of a message. Read more about
  * these fields at https://developers.facebook.com/docs/messenger-platform/webhook-reference/message-delivered
  *
  */
@@ -1313,8 +1319,8 @@ function receivedDeliveryConfirmation(event) {
 /*
  * Authorization Event
  *
- * The value for 'optin.ref' is defined in the entry point. For the "Send to 
- * Messenger" plugin, it is the 'data-ref' field. Read more at 
+ * The value for 'optin.ref' is defined in the entry point. For the "Send to
+ * Messenger" plugin, it is the 'data-ref' field. Read more at
  * https://developers.facebook.com/docs/messenger-platform/webhook-reference/authentication
  *
  */
@@ -1324,9 +1330,9 @@ function receivedAuthentication(event) {
 	var timeOfAuth = event.timestamp;
 
 	// The 'ref' field is set in the 'Send to Messenger' plugin, in the 'data-ref'
-	// The developer can set this to an arbitrary value to associate the 
+	// The developer can set this to an arbitrary value to associate the
 	// authentication callback with the 'Send to Messenger' click event. This is
-	// a way to do account linking when the user clicks the 'Send to Messenger' 
+	// a way to do account linking when the user clicks the 'Send to Messenger'
 	// plugin.
 	var passThroughParam = event.optin.ref;
 
@@ -1340,8 +1346,8 @@ function receivedAuthentication(event) {
 }
 
 /*
- * Verify that the callback came from Facebook. Using the App Secret from 
- * the App Dashboard, we can verify the signature that is sent with each 
+ * Verify that the callback came from Facebook. Using the App Secret from
+ * the App Dashboard, we can verify the signature that is sent with each
  * callback in the x-hub-signature field, located in the header.
  *
  * https://developers.facebook.com/docs/graph-api/webhooks#setup
