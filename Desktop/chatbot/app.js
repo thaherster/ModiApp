@@ -1102,7 +1102,7 @@ function receivedPostback(event) {
 		"5" : maincourse
 	};
 
-	console.log(" MENU ======== "+ menus);
+	console.log(" MENU ======== "+ menus.toString());
 
 	let result = {};
 
