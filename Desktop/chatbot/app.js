@@ -866,17 +866,6 @@ function sendAccountLinking(recipientId) {
 }
 
 
-   function delayedPush (item) {
-    return new Promise(function (resolve, reject) {
-        setTimeout(function () {
-            cartref.push(item)
-                .then(resolve, reject);
-        }, 1);
-    });
-}
-
-
-
 function greetUserText(userId) {
 	//first read user firstname
 
@@ -1101,10 +1090,10 @@ function receivedPostback(event) {
 	let recipientID = event.recipient.id;
 	let timeOfPostback = event.timestamp;
     setSessionAndUser(senderID);
-    // let cart = false;
-    // // The 'payload' param is a developer-defined field which is set in a postback
-    // // button for Structured Messages.
-    // let payload = event.postback.payload;
+	let cart = false;
+	// The 'payload' param is a developer-defined field which is set in a postback
+	// button for Structured Messages.
+	let payload = event.postback.payload;
     // let  menus = soups.concat(starter.concat(friedrice.concat(noodles).concat(maincourse)));
     //
     // // let result =  menus.filter(
@@ -1119,15 +1108,14 @@ function receivedPostback(event) {
     // for (let ke in menus) {
     //     if (menus.hasOwnProperty(ke) && menus[ke].key === payload){
     //     	console.log("CART ITEM "+ JSON.stringify(ke));
-    //
-    //
-    //         sendTextMessage(senderID, "added to cart " + payload);
+		// 	sendTextMessage(senderID, "added to cart " + payload);
 		// 	cart =true;
-    //
+		//
     //     }
     // }
 
 // if(!cart)
+// {
 	switch (payload) {
 
 
@@ -1246,6 +1234,7 @@ function receivedPostback(event) {
 			break;
 
 	}
+// }
 
 	console.log("Received postback for user %d and page %d with payload '%s' " +
 		"at %d", senderID, recipientID, payload, timeOfPostback);

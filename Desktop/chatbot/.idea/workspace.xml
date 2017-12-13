@@ -17,8 +17,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="1247" column="5" lean-forward="true" selection-start-line="1247" selection-start-column="5" selection-end-line="1247" selection-end-column="5" />
+            <state relative-caret-position="2630">
+              <caret line="1241" column="1" lean-forward="true" selection-start-line="1241" selection-start-column="1" selection-end-line="1241" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -178,18 +178,17 @@
       <workItem from="1512822746595" duration="2259000" />
       <workItem from="1512887900662" duration="5739000" />
       <workItem from="1513093063582" duration="1758000" />
-      <workItem from="1513179488115" duration="8138000" />
+      <workItem from="1513179488115" duration="8416000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48157000" />
+    <option name="totallyTimeSpent" value="48435000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24609375" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24609375" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32933334" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -461,8 +460,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="1247" column="5" lean-forward="true" selection-start-line="1247" selection-start-column="5" selection-end-line="1247" selection-end-column="5" />
+        <state relative-caret-position="2630">
+          <caret line="1241" column="1" lean-forward="true" selection-start-line="1241" selection-start-column="1" selection-end-line="1241" selection-end-column="1" />
           <folding />
         </state>
       </provider>
