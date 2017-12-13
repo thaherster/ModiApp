@@ -52,7 +52,7 @@ admin.initializeApp({
 });
 
 let db = admin.database();
-let ref = db.ref("blaaah");
+let cartref = db.ref("cart");
 
 
 
@@ -1096,11 +1096,11 @@ function receivedPostback(event) {
 	let payload = event.postback.payload;
     let  menus = soups.concat(starter.concat(friedrice.concat(noodles).concat(maincourse)));
 
-    let result =  menus.filter(
-        (items) => {
-            return items.key === payload;
-        }
-    );
+    // let result =  menus.filter(
+    //     (items) => {
+    //         return items.key === payload;
+    //     }
+    // );
 
 	console.log(" MENU ======== "+ JSON.stringify(result));
 
@@ -1108,8 +1108,11 @@ function receivedPostback(event) {
     for (let ke in menus) {
         if (menus.hasOwnProperty(ke) && menus[ke].key === payload){
         	console.log("CART ITEM "+ JSON.stringify(ke));
+
+            cartref.child(senderID).push(ke);
             sendTextMessage(senderID, "added to cart " + payload);
 			cart =true;
+
         }
     }
 
