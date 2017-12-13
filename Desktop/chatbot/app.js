@@ -1090,11 +1090,10 @@ function receivedPostback(event) {
 	let recipientID = event.recipient.id;
 	let timeOfPostback = event.timestamp;
     setSessionAndUser(senderID);
-	let cart = false;
 	// The 'payload' param is a developer-defined field which is set in a postback
 	// button for Structured Messages.
 	let payload = event.postback.payload;
-    // let  menus = soups.concat(starter.concat(friedrice.concat(noodles).concat(maincourse)));
+    let  menus = soups.concat(starter.concat(friedrice.concat(noodles).concat(maincourse)));
     //
     // // let result =  menus.filter(
     // //     (items) => {
@@ -1105,14 +1104,13 @@ function receivedPostback(event) {
     // console.log(" MENU ======== "+ JSON.stringify(result));
     //
     //
-    // for (let ke in menus) {
-    //     if (menus.hasOwnProperty(ke) && menus[ke].key === payload){
-    //     	console.log("CART ITEM "+ JSON.stringify(ke));
-		// 	sendTextMessage(senderID, "added to cart " + payload);
-		// 	cart =true;
-		//
-    //     }
-    // }
+    for (let ke in menus) {
+        if (menus.hasOwnProperty(ke) && menus[ke].key === payload){
+        	console.log("CART ITEM "+ JSON.stringify(ke));
+			sendTextMessage(senderID, "added to cart " + payload);
+
+        }
+    }
 
 // if(!cart)
 // {
