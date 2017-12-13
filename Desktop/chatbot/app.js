@@ -1095,11 +1095,7 @@ function receivedPostback(event) {
 	// button for Structured Messages. 
 	let payload = event.postback.payload;
 
-	let menus = { "1" : soups,
-     "2" : starter,
-     "3" : friedrice,
-     "4" : noodles,
-		"5" : maincourse
+	let menus = { soups, starter, friedrice, noodles, maincourse
 	};
 
 	console.log(" MENU ======== "+ JSON.stringify(menus));
