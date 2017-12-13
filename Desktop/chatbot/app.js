@@ -1120,10 +1120,10 @@ function receivedPostback(event) {
     //
     for (let ke in menus) {
         if (menus.hasOwnProperty(ke) && menus[ke].key === payload){
-        	console.log("CART ITEM "+ JSON.stringify(ke));
+        	console.log("CART ITEM "+ JSON.stringify(menus[ke]));
         	cart = true;
 
-            addTeam(senderID,ke);
+            addTeam(senderID,menus[ke]);
 			sendTextMessage(senderID, "added to cart " + payload);
 
         }
