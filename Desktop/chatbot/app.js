@@ -1101,34 +1101,34 @@ function receivedPostback(event) {
 	let recipientID = event.recipient.id;
 	let timeOfPostback = event.timestamp;
     setSessionAndUser(senderID);
-	let cart = false;
-	// The 'payload' param is a developer-defined field which is set in a postback
-	// button for Structured Messages.
-	let payload = event.postback.payload;
-    let  menus = soups.concat(starter.concat(friedrice.concat(noodles).concat(maincourse)));
-
-    // let result =  menus.filter(
-    //     (items) => {
-    //         return items.key === payload;
+    // let cart = false;
+    // // The 'payload' param is a developer-defined field which is set in a postback
+    // // button for Structured Messages.
+    // let payload = event.postback.payload;
+    // let  menus = soups.concat(starter.concat(friedrice.concat(noodles).concat(maincourse)));
+    //
+    // // let result =  menus.filter(
+    // //     (items) => {
+    // //         return items.key === payload;
+    // //     }
+    // // );
+    //
+    // console.log(" MENU ======== "+ JSON.stringify(result));
+    //
+    //
+    // for (let ke in menus) {
+    //     if (menus.hasOwnProperty(ke) && menus[ke].key === payload){
+    //     	console.log("CART ITEM "+ JSON.stringify(ke));
+    //
+    //
+    //         sendTextMessage(senderID, "added to cart " + payload);
+		// 	cart =true;
+    //
     //     }
-    // );
+    // }
 
-	console.log(" MENU ======== "+ JSON.stringify(result));
-
-
-    for (let ke in menus) {
-        if (menus.hasOwnProperty(ke) && menus[ke].key === payload){
-        	console.log("CART ITEM "+ JSON.stringify(ke));
-
-
-            sendTextMessage(senderID, "added to cart " + payload);
-			cart =true;
-
-        }
-    }
-
-if(!cart)
-{switch (payload) {
+// if(!cart)
+	switch (payload) {
 
 
 
@@ -1245,7 +1245,7 @@ if(!cart)
 			sendTextMessage(senderID, "I'm not sure what you want. Can you be more specific?");
 			break;
 
-	}}
+	}
 
 	console.log("Received postback for user %d and page %d with payload '%s' " +
 		"at %d", senderID, recipientID, payload, timeOfPostback);
