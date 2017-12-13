@@ -1096,11 +1096,14 @@ function receivedPostback(event) {
 	let payload = event.postback.payload;
     let  menus = soups.concat(starter.concat(friedrice.concat(noodles).concat(maincourse)));
 
-	
+    let result =  menus.filter(
+        (items) => {
+            return items.key === payload;
+        }
+    );
 
-	console.log(" MENU ======== "+ JSON.stringify(menus));
+	console.log(" MENU ======== "+ JSON.stringify(result));
 
-	let result = {};
 
     for (let ke in menus) {
         if (menus.hasOwnProperty(ke) && menus[ke].key === payload){
