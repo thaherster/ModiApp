@@ -879,12 +879,12 @@ function delayedPush(senderID,item) {
     return new Promise((resolve, reject) => {
         let newRef = cartref.child(senderID).push(item);
         if(newRef) {
-            resolve(newRef.key());
+            resolve(newRef.key());}
         else {
                 reject("The write operation failed");
             }
         });
-};
+}
 
 
 
