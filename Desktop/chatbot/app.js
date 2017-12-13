@@ -1092,6 +1092,7 @@ function receivedPostback(event) {
     setSessionAndUser(senderID);
 	// The 'payload' param is a developer-defined field which is set in a postback
 	// button for Structured Messages.
+	let cart = false;
 	let payload = event.postback.payload;
     let  menus = soups.concat(starter.concat(friedrice.concat(noodles).concat(maincourse)));
     //
@@ -1107,6 +1108,7 @@ function receivedPostback(event) {
     for (let ke in menus) {
         if (menus.hasOwnProperty(ke) && menus[ke].key === payload){
         	console.log("CART ITEM "+ JSON.stringify(ke));
+        	cart = true;
 			sendTextMessage(senderID, "added to cart " + payload);
 
         }
@@ -1226,9 +1228,10 @@ function receivedPostback(event) {
 		}
 			break;
 
-		default:
-			//unindentified payload
-			sendTextMessage(senderID, "I'm not sure what you want. Can you be more specific?");
+		default: {//unindentified payload
+           if(cart===false)
+		   {sendTextMessage(senderID, "I'm not sure what you want. Can you be more specific?");}
+        }
 			break;
 
 	}
