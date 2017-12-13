@@ -1108,16 +1108,17 @@ function receivedPostback(event) {
 
 
     for (let ke in menus) {
-        if (menus.hasOwnProperty(ke) && menus[ke].key === payload){
-        	console.log("CART ITEM "+ JSON.stringify(ke));
+        if (menus.hasOwnProperty(ke) && menus[ke].key === payload) {
+            console.log("CART ITEM " + JSON.stringify(ke));
 
             // cartref.child(senderID).push().set(ke);
 
             // delayedPush(senderID,ke);
             sendTextMessage(senderID, "added to cart " + payload);
-			cart =true;
+            cart = true;
 
         }
+    }
 
 
 if(!cart)
