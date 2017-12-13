@@ -1094,9 +1094,9 @@ function receivedPostback(event) {
 	// The 'payload' param is a developer-defined field which is set in a postback 
 	// button for Structured Messages. 
 	let payload = event.postback.payload;
+    let  menus = soups.concat(starter.concat(friedrice.concat(noodles).concat(maincourse)));
 
-	let menus = { soups, starter, friedrice, noodles, maincourse
-	};
+	
 
 	console.log(" MENU ======== "+ JSON.stringify(menus));
 
