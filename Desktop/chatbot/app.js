@@ -865,27 +865,6 @@ function sendAccountLinking(recipientId) {
 	callSendAPI(messageData);
 }
 
-//
-//    function delayedPush (senderID,item) {
-//     return new Promise(function (resolve, reject) {
-//         setTimeout(function () {
-//             cartref.child(senderID).push(item)
-//                 .then(resolve, reject);
-//         }, 1);
-//     });
-// }
-
-function delayedPush(senderID,item) {
-    return new Promise((resolve, reject) => {
-        let newRef = cartref.child(senderID).push(item);
-        if(newRef) {
-            resolve(newRef.key());
-        }
-        else {
-                reject("The write operation failed");
-            }
-        });
-}
 
 
 
@@ -1139,7 +1118,7 @@ function receivedPostback(event) {
 			cart =true;
 
         }
-    }
+
 
 if(!cart)
 {switch (payload) {
