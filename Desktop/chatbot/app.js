@@ -1095,6 +1095,23 @@ function receivedPostback(event) {
 	// button for Structured Messages. 
 	let payload = event.postback.payload;
 
+	let menus = { "soup" : soups,
+     "starter" : starter,
+     "friedrice" : friedrice,
+     "noodles" : noodles,
+		"maincourse" : maincourse
+	};
+
+	let result = {};
+
+    for (let key in menus) {
+        if (menus.hasOwnProperty(key) && menus[key].key === payload){
+            sendTextMessage(senderID, "added to cart " + payload);
+
+        }
+    }
+
+
 	switch (payload) {
 
 
@@ -1177,17 +1194,17 @@ function receivedPostback(event) {
         {
             greetUserText(senderID);
 
-            let usersRef = ref.child("users");
-            usersRef.set({
-                alanisawesome: {
-                    date_of_birth: "June 23, 1912",
-                    full_name: "Alan Turing"
-                },
-                gracehop: {
-                    date_of_birth: "December 9, 1906",
-                    full_name: "Grace Hopper"
-                }
-            });
+            // let cartRef = ref.child("cart");
+            // cartRef.set({
+            //     alanisawesome: {
+            //         date_of_birth: "June 23, 1912",
+            //         full_name: "Alan Turing"
+            //     },
+            //     gracehop: {
+            //         date_of_birth: "December 9, 1906",
+            //         full_name: "Grace Hopper"
+            //     }
+            // });
 
         }
             break;
