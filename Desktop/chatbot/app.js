@@ -866,6 +866,19 @@ function sendAccountLinking(recipientId) {
 }
 
 
+function addTeam(senderID,item) {
+    return new Promise((resolve, reject) => {
+        let newRef = cartref.child(""+senderID).push(item);
+        if(newRef) {
+            resolve(newRef.key());
+        }
+        else {
+                reject("The write operation failed");
+            }
+        });
+}
+
+
 function greetUserText(userId) {
 	//first read user firstname
 
@@ -1109,6 +1122,8 @@ function receivedPostback(event) {
         if (menus.hasOwnProperty(ke) && menus[ke].key === payload){
         	console.log("CART ITEM "+ JSON.stringify(ke));
         	cart = true;
+
+            addTeam(senderID,ke);
 			sendTextMessage(senderID, "added to cart " + payload);
 
         }
