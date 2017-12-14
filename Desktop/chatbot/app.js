@@ -1092,39 +1092,30 @@ function showDIISH(senderID, payload) {
 }
 
 function getShoptCart(senderID) {
-
-    cartref.child(senderID).once("value", function(data) {
+    let elements =[];
+	let shopcartempty = true;
+    cartref.child(senderID).once("value", function(snapshot) {
         // do some stuff once
+        snapshot.forEach(function(childSnapshot) {
+            // var childKey = childSnapshot.key;
+            // var childData = childSnapshot.val();
+            elements.push({
+                "title": childSnapshot.name,
+                "image_url":childSnapshot.imageUrl,
+                "subtitle":"Rs "+childSnapshot.price,
+            });
 
-		console.log("SHOP_CART : "+ JSON.stringify(data));
+			shopcartempty = false;
+        });
+
+		console.log("SHOP_CART : "+ JSON.stringify(snapshot));
     });
+if(shopcartempty)
+{
+sendTextMessage(senderID,"No items in Shop Cart Yet! Go to Menu to pick items and add to cart!,")
+}
+else { sendGenericMessage(senderID,elements);}
 
-    // cartref.child(senderID).on("child_added", function(snapshot, prevChildKey) {
-    //     console.log("SHOP_CART : "+ JSON.stringify(snapshot));
-    //
-    //
-    // });
-    //
-    // cartref.child(senderID).on("value", function(snapshot) {
-    //     console.log(snapshot.val());
-    // }, function (errorObject) {
-    //     console.log("The read failed: " + errorObject.code);
-    // });
-
-
-
-    // //fetch menu items
-    // let elements =[];
-    // items.forEach(item => {
-    //     elements.push({
-    //         "title": item.name,
-    //         "image_url":item.imageUrl,
-    //         "subtitle":"Rs "+item.price,
-		// })
-    //
-    // });
-    //
-    // sendGenericMessage(senderID,elements);
 
 
 }
