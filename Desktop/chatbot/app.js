@@ -1091,6 +1091,32 @@ function showDIISH(senderID, payload) {
 
 }
 
+function getShoptCart(senderID) {
+
+    cartref.once(senderID, function(data) {
+        // do some stuff once
+
+		console.log("SHOP_CART : "+ JSON.stringify(data));
+    });
+
+
+
+    // //fetch menu items
+    // let elements =[];
+    // items.forEach(item => {
+    //     elements.push({
+    //         "title": item.name,
+    //         "image_url":item.imageUrl,
+    //         "subtitle":"Rs "+item.price,
+		// })
+    //
+    // });
+    //
+    // sendGenericMessage(senderID,elements);
+
+
+}
+
 /*
  * Postback Event
  *
@@ -1124,7 +1150,7 @@ function receivedPostback(event) {
         	cart = true;
 
             addTeam(senderID,menus[ke]);
-			sendTextMessage(senderID, "added to cart " + payload);
+			sendTextMessage(senderID, "Added to cart !");
 
         }
     }
@@ -1183,7 +1209,7 @@ function receivedPostback(event) {
 
 		case 'SHOPCART':
 		{
-            sendTextMessage(senderID, "user shopcart");
+            getShoptCart(senderID);
 			//show shopcart
 		}
 			break;
