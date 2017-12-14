@@ -1108,16 +1108,19 @@ function getShoptCart(senderID) {
 			shopcartempty = false;
         });
 
+        if(shopcartempty===false)
+        {
+            sendGenericMessage(senderID,elements);
+
+        }
+        else {
+            sendTextMessage(senderID,"No items in Shop Cart Yet! Go to Menu to pick items and add to cart!");
+
+        }
+
 		console.log("SHOP_CART : "+ JSON.stringify(elements));
     });
-if(!shopcartempty)
-{
-    sendGenericMessage(senderID,elements);
-}
-else {
-    sendTextMessage(senderID,"No items in Shop Cart Yet! Go to Menu to pick items and add to cart!");
 
-}
 
 
 
