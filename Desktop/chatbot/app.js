@@ -1108,7 +1108,7 @@ function getShoptCart(senderID) {
 			shopcartempty = false;
         });
 
-		console.log("SHOP_CART : "+ JSON.stringify(snapshot));
+		console.log("SHOP_CART : "+ JSON.stringify(elements));
     });
 if(shopcartempty)
 {
