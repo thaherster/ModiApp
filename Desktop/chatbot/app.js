@@ -884,19 +884,22 @@ function addOrder(senderID,item) {
         let newRef = orderref.child(senderID).push(item);
         if(newRef) {
             resolve(newRef.key());
-            return new Promise((resolve1, reject1) => {
-                let newRef1 = cartref.child(senderID).set(null);
-                if(newRef1) {
-                    resolve1(newRef1.key());
 
-                }
-                else {
-                    reject1("The write operation failed");
-                }
-            });
         }
         else {
             reject("The write operation failed");
+        }
+    });
+}
+function cleanCart(senderID) {
+    return new Promise((resolve1, reject1) => {
+        let newRef1 = cartref.child(senderID).set(null);
+        if(newRef1) {
+            resolve1(newRef1.key());
+
+        }
+        else {
+            reject1("The write operation failed");
         }
     });
 }
@@ -1118,33 +1121,41 @@ function showDIISH(senderID, payload) {
 function getShoptCart(senderID) {
     let elements =[];
 	let shopcartempty = true;
-    cartref.child(senderID).once("value", function(snapshot) {
-        // do some stuff once
-        snapshot.forEach(function(childSnapshot) {
-            // var childKey = childSnapshot.key;
-            // var childData = childSnapshot.val();
-            elements.push({
-                "title": childSnapshot.val().name,
-                "image_url":childSnapshot.val().imageUrl,
-                "subtitle":"Rs "+childSnapshot.val().price,
+    return new Promise((resolve, reject) => {
+        cartref.child(senderID).once("value", function(snapshot) {
+            // do some stuff once
+            snapshot.forEach(function(childSnapshot) {
+                // var childKey = childSnapshot.key;
+                // var childData = childSnapshot.val();
+                elements.push({
+                    "title": childSnapshot.val().name,
+                    "image_url":childSnapshot.val().imageUrl,
+                    "subtitle":"Rs "+childSnapshot.val().price,
+                });
+
+                shopcartempty = false;
             });
 
-			shopcartempty = false;
-        });
+            if(shopcartempty===false)
+            {
+                sendGenericMessage(senderID,elements);
 
-        if(shopcartempty===false)
-        {
-            sendGenericMessage(senderID,elements);
+            }
+            else {
+                sendTextMessage(senderID,"No items in Shop Cart Yet! Go to Menu to pick items and add to cart!");
+
+            }
+
+            console.log("SHOP_CART : "+ JSON.stringify(elements));
+        });
+        if(newRef) {
+            resolve(newRef.key());
 
         }
         else {
-            sendTextMessage(senderID,"No items in Shop Cart Yet! Go to Menu to pick items and add to cart!");
-
+            reject("The write operation failed");
         }
-
-		console.log("SHOP_CART : "+ JSON.stringify(elements));
     });
-
 
 
 
@@ -1155,34 +1166,46 @@ function confirmOrder(senderID) {
 
     let elements =[];
     let shopcartempty = true;
-    cartref.child(senderID).once("value", function(snapshot) {
-        // do some stuff once
-        snapshot.forEach(function(childSnapshot) {
-            // var childKey = childSnapshot.key;
-            // var childData = childSnapshot.val();
-            elements.push({
-                "title": childSnapshot.val().name,
-                "image_url":childSnapshot.val().imageUrl,
-                "subtitle":"Rs "+childSnapshot.val().price,
+
+
+    return new Promise((resolve, reject) => {
+        cartref.child(senderID).once("value", function(snapshot) {
+            // do some stuff once
+            snapshot.forEach(function(childSnapshot) {
+                // var childKey = childSnapshot.key;
+                // var childData = childSnapshot.val();
+                elements.push({
+                    "title": childSnapshot.val().name,
+                    "image_url":childSnapshot.val().imageUrl,
+                    "subtitle":"Rs "+childSnapshot.val().price,
+                });
+
+                shopcartempty = false;
             });
 
-            shopcartempty = false;
+
+            if(shopcartempty===false)
+            {
+                addOrder(senderID,elements);
+                cleanCart(senderID);
+
+                sendTextMessage(senderID,"Thank You For Your Order!");
+
+            }
+            else {
+                sendTextMessage(senderID,"No items in Shop Cart Yet! Go to Menu to pick items and add to cart!");
+
+            }
+
+            console.log("SHOP_CART : "+ JSON.stringify(elements));
         });
-
-
-        if(shopcartempty===false)
-        {
-            addOrder(senderID,elements);
-
-            sendTextMessage(senderID,"Thank You For Your Order!");
+        if(newRef) {
+            resolve(newRef.key());
 
         }
         else {
-            sendTextMessage(senderID,"No items in Shop Cart Yet! Go to Menu to pick items and add to cart!");
-
+            reject("The write operation failed");
         }
-
-        console.log("SHOP_CART : "+ JSON.stringify(elements));
     });
 
 }
