@@ -1112,9 +1112,12 @@ function getShoptCart(senderID) {
     });
 if(shopcartempty)
 {
-sendTextMessage(senderID,"No items in Shop Cart Yet! Go to Menu to pick items and add to cart!,")
+    sendGenericMessage(senderID,elements);
 }
-else { sendGenericMessage(senderID,elements);}
+else {
+    sendTextMessage(senderID,"No items in Shop Cart Yet! Go to Menu to pick items and add to cart!");
+
+}
 
 
 
