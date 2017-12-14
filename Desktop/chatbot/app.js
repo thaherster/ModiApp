@@ -1100,9 +1100,9 @@ function getShoptCart(senderID) {
             // var childKey = childSnapshot.key;
             // var childData = childSnapshot.val();
             elements.push({
-                "title": childSnapshot.name,
-                "image_url":childSnapshot.imageUrl,
-                "subtitle":"Rs "+childSnapshot.price,
+                "title": childSnapshot.val().name,
+                "image_url":childSnapshot.val().imageUrl,
+                "subtitle":"Rs "+childSnapshot.val().price,
             });
 
 			shopcartempty = false;
@@ -1110,7 +1110,7 @@ function getShoptCart(senderID) {
 
 		console.log("SHOP_CART : "+ JSON.stringify(elements));
     });
-if(shopcartempty)
+if(!shopcartempty)
 {
     sendGenericMessage(senderID,elements);
 }
