@@ -1093,11 +1093,23 @@ function showDIISH(senderID, payload) {
 
 function getShoptCart(senderID) {
 
-    cartref.once(senderID, function(data) {
+    cartref.child(senderID).once("value", function(data) {
         // do some stuff once
 
 		console.log("SHOP_CART : "+ JSON.stringify(data));
     });
+
+    // cartref.child(senderID).on("child_added", function(snapshot, prevChildKey) {
+    //     console.log("SHOP_CART : "+ JSON.stringify(snapshot));
+    //
+    //
+    // });
+    //
+    // cartref.child(senderID).on("value", function(snapshot) {
+    //     console.log(snapshot.val());
+    // }, function (errorObject) {
+    //     console.log("The read failed: " + errorObject.code);
+    // });
 
 
 
