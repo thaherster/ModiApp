@@ -53,6 +53,7 @@ admin.initializeApp({
 
 let db = admin.database();
 let cartref = db.ref("cart");
+let orderref = db.ref("orders");
 
 
 
@@ -878,6 +879,29 @@ function addTeam(senderID,item) {
         });
 }
 
+function addOrder(senderID,item) {
+    return new Promise((resolve, reject) => {
+        let newRef = orderref.child(senderID).push(item);
+        if(newRef) {
+            resolve(newRef.key());
+            return new Promise((resolve1, reject1) => {
+                let newRef1 = cartref.child(senderID).set(null);
+                if(newRef1) {
+                    resolve1(newRef1.key());
+
+                }
+                else {
+                    reject1("The write operation failed");
+                }
+            });
+        }
+        else {
+            reject("The write operation failed");
+        }
+    });
+}
+
+
 
 function greetUserText(userId) {
 	//first read user firstname
@@ -1126,6 +1150,43 @@ function getShoptCart(senderID) {
 
 }
 
+function confirmOrder(senderID) {
+
+
+    let elements =[];
+    let shopcartempty = true;
+    cartref.child(senderID).once("value", function(snapshot) {
+        // do some stuff once
+        snapshot.forEach(function(childSnapshot) {
+            // var childKey = childSnapshot.key;
+            // var childData = childSnapshot.val();
+            elements.push({
+                "title": childSnapshot.val().name,
+                "image_url":childSnapshot.val().imageUrl,
+                "subtitle":"Rs "+childSnapshot.val().price,
+            });
+
+            shopcartempty = false;
+        });
+
+
+        if(shopcartempty===false)
+        {
+            addOrder(senderID,elements);
+
+            sendTextMessage(senderID,"Thank You For Your Order!");
+
+        }
+        else {
+            sendTextMessage(senderID,"No items in Shop Cart Yet! Go to Menu to pick items and add to cart!");
+
+        }
+
+        console.log("SHOP_CART : "+ JSON.stringify(elements));
+    });
+
+}
+
 /*
  * Postback Event
  *
@@ -1224,7 +1285,7 @@ function receivedPostback(event) {
 			break;
 		case 'FOODORDER':
 		{
-            sendTextMessage(senderID, "user FOODORDER");
+            sendTextMessage(senderID, "Go to Menu to pick items and add to cart!");
             // start food ordering intent
 
         }
@@ -1232,8 +1293,8 @@ function receivedPostback(event) {
 
         case 'CONFIRMORDER':
         {
-            sendTextMessage(senderID, "user confirm order");
             //confirm order, clear shop cart
+			confirmOrder(senderID);
 
         }
             break;
