@@ -433,8 +433,8 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
                             menus[ke].count = count;
 
                             // sendToApiAi(senderID,menus[ke].key);
-                            addTeam(senderID,menus[ke]);
-                            sendTextMessage(senderID, "Added to cart !");
+                            addTeam(sender,menus[ke]);
+                            sendTextMessage(sender, "Added to cart !");
 
                         }
                     }
