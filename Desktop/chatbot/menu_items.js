@@ -176,7 +176,7 @@ exports.FRIEDRICE = [
 exports.MAINCOURSE = [
     {
         name: "Chilly Gobi",
-        key: 'Chilly Gobi',
+        key: 'CHILLY_GOBI',
         category: ["MAINCOURSE"],
         vegetarian: false,
         imageUrl: "http://cdn.mariasmenu.com/wp-content/uploads/Chilli-Gobi-Recipe.jpg",
