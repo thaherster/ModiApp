@@ -412,7 +412,7 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 		case 'add-item':
             // if(isDefined(parameters['food-items']&&parameters['food-items']!=='')&&isDefined(parameters['count']&&parameters['count']!==''))
             // {
-                console.log("__________XXXXXXXX"+JSON.stringify(parameters));
+                console.log("__________YYYYYYYYYYY"+JSON.stringify(parameters));
             //
             // }
             // else
