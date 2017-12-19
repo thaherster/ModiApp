@@ -1242,8 +1242,9 @@ function receivedPostback(event) {
         	console.log("CART ITEM "+ JSON.stringify(menus[ke]));
         	cart = true;
 
-            addTeam(senderID,menus[ke]);
-			sendTextMessage(senderID, "Added to cart !");
+        	sendToApiAi(senderID,menus[ke].key);
+            // addTeam(senderID,menus[ke]);
+			// sendTextMessage(senderID, "Added to cart !");
 
         }
     }
