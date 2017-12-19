@@ -1175,7 +1175,7 @@ function getShoptCart(senderID) {
                 elements.push({
                     "title": childSnapshot.val().name,
                     "image_url":childSnapshot.val().imageUrl,
-                    "subtitle":"Rs "+childSnapshot.val().price,
+                    "subtitle":"Rs "+childSnapshot.val().price +" x "+childSnapshot.val().count+" Qty"
                 });
 
                 shopcartempty = false;
@@ -1222,7 +1222,7 @@ function confirmOrder(senderID) {
                 elements.push({
                     "title": childSnapshot.val().name,
                     "image_url":childSnapshot.val().imageUrl,
-                    "subtitle":"Rs "+childSnapshot.val().price,
+                    "subtitle":"Rs "+childSnapshot.val().price+ " x "+childSnapshot.val().count+" Qty",
                 });
 
                 shopcartempty = false;
