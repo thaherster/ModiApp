@@ -420,6 +420,26 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
                 if(item!==''&&count!=='')
 				{
 					console.log("XXXXYXXXXX "+item+" "+count);
+
+
+                    let cart = false;
+                    let payload = item;
+                    let  menus = soups.concat(starter.concat(friedrice.concat(noodles).concat(maincourse)));
+
+                    for (let ke in menus) {
+                        if (menus.hasOwnProperty(ke) && menus[ke].key === payload){
+                            console.log("CART ITEM "+ JSON.stringify(menus[ke]));
+                            cart = true;
+                            menus[ke].count = count;
+
+                            // sendToApiAi(senderID,menus[ke].key);
+                            addTeam(senderID,menus[ke]);
+                            sendTextMessage(senderID, "Added to cart !");
+
+                        }
+                    }
+
+
 				}
 				else {
                     sendTextMessage(sender, responseText);
