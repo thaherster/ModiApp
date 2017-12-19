@@ -410,7 +410,7 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 			break;
 
 		case 'add-item':
-			if(isDefined(contexts[0])&&(contexts[0].name==='add-item')&&contexts[0].parameters)
+			if(isDefined(contexts[0])&&(contexts[0].name==='add-item'||contexts[0].name==='add-item_dialog_context')&&contexts[0].parameters)
 			{
                 let item = (isDefined(contexts[0].parameters['food-items'])&&
                     contexts[0].parameters['food-items']!=='')?contexts[0].parameters['food-items']:'';
@@ -428,6 +428,8 @@ function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 
 
 			}
+			else {                    sendTextMessage(sender, responseText);
+            }
 
 
             break;
