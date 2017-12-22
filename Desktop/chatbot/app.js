@@ -796,22 +796,29 @@ function sendButtonMessage(recipientId, text, buttons) {
 
 
 function sendGenericMessage(recipientId, elements) {
-	var messageData = {
-		recipient: {
-			id: recipientId
-		},
-		message: {
-			attachment: {
-				type: "template",
-				payload: {
-					template_type: "generic",
-					elements: elements
-				}
-			}
-		}
-	};
+	let noOfMessages = Math.ceil(elements.length/10)
+	for(let i=0; i<noOfMessages;i++){
 
-	callSendAPI(messageData);
+        let messageData = {
+            recipient: {
+                id: recipientId
+            },
+            message: {
+                attachment: {
+                    type: "template",
+                    payload: {
+                        template_type: "generic",
+                        elements: elements.slice(i*10,(i*10)+10)
+                    }
+                }
+            }
+        };
+        console.log(" ASJN "+i +" "+JSON.stringify(elements));
+
+        // callSendAPI(messageData);
+
+	}
+
 }
 
 function sendReciept(recipientId, elements,name,time,address,totprice) {
@@ -1253,8 +1260,8 @@ function getShoptCart(senderID) {
 
             if(shopcartempty===false)
             {
-                // sendGenericMessage(senderID,elements);
-                sendReciept(senderID,elements,"name","time",address,totprice);
+                sendGenericMessage(senderID,elements);
+                // sendReciept(senderID,elements,"name","time",address,totprice);
 
             }
             else {
