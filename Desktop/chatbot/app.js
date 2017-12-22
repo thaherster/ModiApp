@@ -808,7 +808,7 @@ function sendGenericMessage(recipientId, elements) {
                     type: "template",
                     payload: {
                         template_type: "generic",
-                        elements: elements.slice(i*10,(i*10)+9)
+                        elements: elements.slice(i*10,(i*10)+10)
                     }
                 }
             }
