@@ -796,7 +796,7 @@ function sendButtonMessage(recipientId, text, buttons) {
 
 
 function sendGenericMessage(recipientId, elements) {
-	let noOfMessages = Math.ceil(elements.length/10)
+	let noOfMessages = Math.ceil(elements.length/10);
 	for(let i=0; i<noOfMessages;i++){
 
         let messageData = {
