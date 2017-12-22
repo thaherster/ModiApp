@@ -1253,7 +1253,7 @@ function getShoptCart(senderID) {
                     "image_url":childSnapshot.val().imageUrl,
                     "subtitle":"Rs "+childSnapshot.val().price +" x "+childSnapshot.val().count+" Qty"
                 });
-                totprice+ = childSnapshot.val().price*childSnapshot.val().count;
+                totprice+= childSnapshot.val().price*childSnapshot.val().count;
 
                 shopcartempty = false;
             });
