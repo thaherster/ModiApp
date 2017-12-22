@@ -814,6 +814,38 @@ function sendGenericMessage(recipientId, elements) {
 	callSendAPI(messageData);
 }
 
+function sendReciept(recipientId, elements,name,time,address,totprice) {
+    let messageData = {
+        recipient: {
+            id: recipientId
+        },
+        message: {
+            attachment: {
+                type: "template",
+                payload: {
+                    template_type: "receipt",
+                    recipient_name:name,
+                    currency:"INR",
+                    payment_method:"Cash on Delivery",
+                    timestamp:time,
+                    address:{
+                        street_1:address,
+                    },
+                    summary:{
+                        subtotal: totprice,
+						shipping_cost: 0,
+                		total_tax: totprice/18,
+						total_cost: totprice+(totprice/18)
+        			},
+                    elements: elements
+                }
+            }
+        }
+    };
+
+    callSendAPI(messageData);
+}
+
 
 function sendReceiptMessage(recipientId, recipient_name, currency, payment_method,
 							timestamp, elements, address, summary, adjustments) {
@@ -1202,6 +1234,7 @@ function showDIISH(senderID, payload) {
 function getShoptCart(senderID) {
     let elements =[];
 	let shopcartempty = true;
+	let totprice = 0;
     return new Promise((resolve, reject) => {
         cartref.child(senderID).once("value", function(snapshot) {
             // do some stuff once
@@ -1213,13 +1246,15 @@ function getShoptCart(senderID) {
                     "image_url":childSnapshot.val().imageUrl,
                     "subtitle":"Rs "+childSnapshot.val().price +" x "+childSnapshot.val().count+" Qty"
                 });
+                totprice+ = childSnapshot.val().price*childSnapshot.val().count;
 
                 shopcartempty = false;
             });
 
             if(shopcartempty===false)
             {
-                sendGenericMessage(senderID,elements);
+                // sendGenericMessage(senderID,elements);
+                sendReciept(senderID,elements,"name","time",address,totprice);
 
             }
             else {
