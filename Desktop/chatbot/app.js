@@ -1449,34 +1449,20 @@ function receivedPostback(event) {
                 cartref.child(senderID).once("value", function(snapshot) {
                     // do some stuff once
                     snapshot.forEach(function(childSnapshot) {
-                        // var childKey = childSnapshot.key;
-                        // var childData = childSnapshot.val();
-                        elements.push({
-                            "title": childSnapshot.val().name,
-                            "image_url":childSnapshot.val().imageUrl,
-                            "subtitle":"Rs "+childSnapshot.val().price+ " x "+childSnapshot.val().count+" Qty",
-                        });
-
                         shopcartempty = false;
-                        totprice+=(childSnapshot.val().price *childSnapshot.val().count);
                     });
-
-
                     if(shopcartempty===false)
                     {
                         sendToApiAi(senderID,"confirm order");
-
-
                     }
                     else {
                         sendTextMessage(senderID,"No items in Shop Cart Yet! Go to Menu to pick items and add to cart!");
 
                     }
 
-                    console.log("SHOP_CART : "+ JSON.stringify(elements));
                 });
-                if(newRef) {
-                    resolve(newRef.key());
+                if(cartref) {
+                    resolve(cartref.key());
 
                 }
                 else {
