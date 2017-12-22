@@ -798,6 +798,8 @@ function sendButtonMessage(recipientId, text, buttons) {
 function sendGenericMessage(recipientId, elements) {
 	let noOfMessages = Math.ceil(elements.length/10);
 	for(let i=0; i<noOfMessages;i++){
+		let limit = (elements.length < (i*10)+10) ? (i*10)+10 : elements.length;
+
 
         let messageData = {
             recipient: {
@@ -808,7 +810,7 @@ function sendGenericMessage(recipientId, elements) {
                     type: "template",
                     payload: {
                         template_type: "generic",
-                        elements: elements.slice(i*10,(i*10)+10)
+                        elements: elements.slice(i*10,limit)
                     }
                 }
             }
