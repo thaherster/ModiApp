@@ -267,7 +267,38 @@ function handleEcho(messageId, appId, metadata) {
 
 function handleApiAiAction(sender, action, responseText, contexts, parameters) {
 	switch (action) {
-		case "unsubscribe":
+		case 'confirm-order':
+		{
+
+            if(isDefined(contexts[0])&&(contexts[0].name==='confirm-order'||contexts[0].name==='confirm-order_dialog_context')&&contexts[0].parameters)
+            {
+                let address = (isDefined(contexts[0].parameters['address'])&&
+                    contexts[0].parameters['address']!=='')?contexts[0].parameters['address']:'';
+                let number = (isDefined(contexts[0].parameters['number'])&&
+                    contexts[0].parameters['number']!=='')?contexts[0].parameters['number']:'';
+
+                if(address!==''&&number!=='')
+                {
+                    console.log("XXXXYXXXXX "+address+" "+number);
+
+                    confirmOrder(sender,address,number);
+
+
+                }
+                else {
+                    sendTextMessage(sender, responseText);
+
+                }
+
+
+            }
+            else {                    sendTextMessage(sender, responseText);
+            }
+
+
+        }
+			break;
+		case 'unsubscribe':
 		{
             userService.newsletterSettings(function (updated) {
 
@@ -924,8 +955,13 @@ function addTeam(senderID,item) {
         });
 }
 
-function addOrder(senderID,item) {
+function addOrder(senderID,item,address,number) {
+	orderref.child(senderID).child("address").set(address);
+	orderref.child(senderID).child("number").set(number);
+
+
     return new Promise((resolve, reject) => {
+
         let newRef = orderref.child(senderID).push(item);
         if(newRef) {
             resolve(newRef.key());
@@ -1206,11 +1242,12 @@ function getShoptCart(senderID) {
 
 }
 
-function confirmOrder(senderID) {
+function confirmOrder(senderID,address,number) {
 
 
     let elements =[];
     let shopcartempty = true;
+    let totprice = 0;
 
 
     return new Promise((resolve, reject) => {
@@ -1226,14 +1263,15 @@ function confirmOrder(senderID) {
                 });
 
                 shopcartempty = false;
+                totprice+=(childSnapshot.val().price *childSnapshot.val().count);
             });
 
 
             if(shopcartempty===false)
             {
-                addOrder(senderID,elements);
+                addOrder(senderID,elements,address,number);
                 cleanCart(senderID);
-
+                sendTextMessage(senderID,"Your order cost : "+totprice+" Rs");
                 sendTextMessage(senderID,"Thank You For Your Order!");
 
             }
@@ -1363,7 +1401,8 @@ function receivedPostback(event) {
         case 'CONFIRMORDER':
         {
             //confirm order, clear shop cart
-			confirmOrder(senderID);
+            // confirmOrder(senderID);
+			sendToApiAi(senderID,"confirm order")
 
         }
             break;
