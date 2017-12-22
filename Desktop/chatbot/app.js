@@ -815,7 +815,7 @@ function sendGenericMessage(recipientId, elements) {
                 }
             }
         };
-        console.log(" ASJN "+i +" "+JSON.stringify(elements));
+        console.log(" ASJN "+i +" "+JSON.stringify(messageData));
 
         callSendAPI(messageData);
 
